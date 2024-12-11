@@ -3,16 +3,18 @@ layout: default
 title: "Enlaces de Interes - Ideal 10"
 ---
 
-<section
-    class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+<section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Enlaces
-            de interés</h1>
-        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Señor usuario, a continuación
-            encontrará enlaces y archivos de interés actualizados y vigentes a la fecha.</p>
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            Enlaces de interés
+        </h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            Señor usuario, a continuación encontrará enlaces y archivos de interés actualizados y vigentes a la fecha.
+        </p>
     </div>
 </section>
-<div id="tabla-enlaces">
+
+<div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -26,44 +28,10 @@ title: "Enlaces de Interes - Ideal 10"
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sistema General de Regalías
-                    </th>
-                    <td class="px-2 py-1">
-                        <a href="https://www.minhacienda.gov.co/webcenter/portal/SGR" target="_blank">
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Ir
-                                al sitio</button>
-                        </a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Recursos de inspeccion vigilancia y control - Superintendencia Nacional de Salud
-                    </th>
-                    <td class="px-2 py-1">
-                        <a href="https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc"
-                            target="_blank">
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Ir
-                                al sitio</button>
-                        </a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud
-                    </th>
-                    <td class="px-2 py-1">
-                        <a href="https://www.supersalud.gov.co/es-co/Paginas/Informaci%C3%B3n%20Financiera/control-financiero-de-cuentas.aspx"
-                            target="_blank">
-                            <button type="button"
-                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Ir
-                                al sitio</button>
-                        </a>
-                    </td>
-                </tr>
+                {% for enlace in site.data.enlaces_de_interes %}
+                    {% include enlace_de_interes.liquid title=enlace.title url=enlace.url %}
+                {% endfor %}
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         Portal SGPR
