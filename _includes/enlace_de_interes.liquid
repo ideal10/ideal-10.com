@@ -3,7 +3,7 @@
         {{ include.title }}
     </th>
     <td class="px-2 py-1">
-        <a href="{{ include.url }}" target="{{ include.target | default: "_blank" }}" class="block text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+        <a href="{{ include.url }}" target="{{ include.target | default: "_blank" }}" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
             {{ include.text | default: "Ir al sitio" }}
         </a>
     </td>
