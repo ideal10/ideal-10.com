@@ -17,7 +17,7 @@ module.exports = {
         './*.liquid',
         './*.md',
     ],
-    darkMode: 'class',
+    darkMode: 'media',
     plugins: [
         require('flowbite/plugin')
     ],
