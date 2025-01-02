@@ -1,0 +1,14 @@
+- name: Alcaldia de Cubarral
+  img: cubarral.png
+- name: Alcaldia de El Castillo
+  img: castillo.png
+- name: Alcaldia de Cumaribo
+  img: cumaribo.png
+- name: Alcaldia de San Juanito
+  img: san-juanito.png
+- name: Alcaldia de Santa Rosalia
+  img: santa-rosalia.png
+- name: Alcaldia de Mapiripan
+  img: mapiripan.png
+- name: Alcaldia de El Dorado
+  img: dorado.png

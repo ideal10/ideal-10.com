@@ -3,6 +3,8 @@ baseurl: ''
 lang: 'es-CO'
 title: 'Ideal 10'
 
+mailer: 'https://ideal-10.com/mailer'
+
 plugins:
   - jekyll-postcss
 
