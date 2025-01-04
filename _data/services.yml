@@ -1,18 +1,18 @@
 - name: Soporte y mantenimiento a software desarrollados por la empresa.
-  description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, ab? Quidem vitae cupiditate dolor, ab minus eligendi. Incidunt nam atque odio temporibus, maxime, ullam illum facilis nihil tenetur repellat necessitatibus?
-  svg: svg/cloud.svg
+  description: Garantizar el correcto funcionamiento del software desarrollado por la empresa, mediante la resolución de problemas, actualizaciones, mejoras, y asistencia técnica. También incluye monitoreo proactivo y adaptaciones para mantener compatibilidad y seguridad.
+  svg: svg/code.svg
 
 - name: Capacitación en el manejo de herramientas informáticas.
-  description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, ab? Quidem vitae cupiditate dolor, ab minus eligendi. Incidunt nam atque odio temporibus, maxime, ullam illum facilis nihil tenetur repellat necessitatibus?
-  svg: svg/cloud.svg
+  description: Ofrecemos formación para asegurar el manejo eficiente de nuestras herramientas informáticas, facilitando su correcta aplicación y optimización en los procesos diarios.
+  svg: svg/desktop-pc.svg
 
 - name: Almacenamiento y conservación de información.
-  description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, ab? Quidem vitae cupiditate dolor, ab minus eligendi. Incidunt nam atque odio temporibus, maxime, ullam illum facilis nihil tenetur repellat necessitatibus?
-  svg: svg/cloud.svg
+  description: Garantizamos el resguardo seguro y la preservación adecuada de la información, asegurando su disponibilidad e integridad a lo largo del tiempo.
+  svg: svg/shield-check.svg
 
 - name: Soporte contable y financiero a procesos administrativos públicos.
-  description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, ab? Quidem vitae cupiditate dolor, ab minus eligendi. Incidunt nam atque odio temporibus, maxime, ullam illum facilis nihil tenetur repellat necessitatibus?
-  svg: svg/cloud.svg
+  description: Brindamos apoyo experto en contabilidad y finanzas para fortalecer la gestión eficiente de los procesos administrativos en entidades públicas.
+  svg: svg/balance.svg
 
 - name: Preparación y envío de información a los diferentes entes de control en entidades Públicas.
   description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, ab? Quidem vitae cupiditate dolor, ab minus eligendi. Incidunt nam atque odio temporibus, maxime, ullam illum facilis nihil tenetur repellat necessitatibus?

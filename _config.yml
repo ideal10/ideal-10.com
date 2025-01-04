@@ -1,9 +1,9 @@
 url: 'https://ideal-10.com'
 baseurl: ''
 lang: 'es-CO'
-title: 'Ideal 10'
+title: 'Ideal'
 
-mailer: 'https://ideal-10.com/mailer'
+mailer: 'https://formspree.io/f/meoopabj'
 
 plugins:
   - jekyll-postcss
