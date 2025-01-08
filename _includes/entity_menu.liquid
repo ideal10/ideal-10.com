@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu de Entidades</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
     <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
     <style>
         body {
@@ -76,7 +77,7 @@
         .menu {
             list-style: none;
             padding: 0;
-            display: none;
+            display: block;
         }
         .menu li {
             margin: 0.5em 0;
@@ -105,8 +106,8 @@
         }
     </script>
 </head>
-<body>
-    <div class="title">IDEAL.10</div>
+<body class="bg-gray-200">
+    <div class=""><img src="/assets/img/big_logo_green.png" width="400"></div>
     <div class="container">
         <div class="left-menu">
             <div class="menu-button" onclick="showMenu()">{{ include.name }}</div>
