@@ -1,8 +1,48 @@
----
-layout: default
-title: "¿Quiénes somos?"
----
-<section class="bg-center bg-no-repeat bg-[url('/assets/img/background.jpg')] bg-cover bg-gray-700 bg-blend-multiply">
+<!DOCTYPE html>
+<html lang="es-CO">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>¿Quiénes somos? - Ideal</title>
+        <link rel="stylesheet" href="/assets/css/main.css">
+    </head>
+    <body class="bg-white dark:bg-gray-900">
+        <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <div class="w-[159.89px] h-16 bg-no-repeat bg-contain bg-[url('/assets/img/big_logo_green.png')] dark:bg-[url('/assets/img/big_logo_white.png')]"></div>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" onclick="location.href='contacto'" class="text-white bg-green-500 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Contáctanos</button>
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                    <a href="/" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Inicio</a>
+                </li>
+                <li>
+                    <a href="/nosotros" class="block py-2 px-3 rounded text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">¿Quiénes somos?</a>
+                </li>
+                <li>
+                    <a href="/ideal-10" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Ideal.10</a>
+                </li>
+                <li>
+                    <a href="/enlaces_de_interes" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Enlaces de interés</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+        <main>
+            <section class="bg-center bg-no-repeat bg-[url('/assets/img/background.jpg')] bg-cover bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
             Ideal S.A.S
@@ -125,8 +165,114 @@ title: "¿Quiénes somos?"
 
     <!-- Grid -->
     <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 lg:gap-6">
-        {% for client in site.data.clients %}
-            {% include client.liquid name=client.name img=client.img %}
-        {% endfor %}
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/cubarral.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de Cubarral</figcaption>
+    </figure>
+</div>
+
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/castillo.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de El Castillo</figcaption>
+    </figure>
+</div>
+
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/cumaribo.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de Cumaribo</figcaption>
+    </figure>
+</div>
+
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/san-juanito.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de San Juanito</figcaption>
+    </figure>
+</div>
+
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/santa-rosalia.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de Santa Rosalia</figcaption>
+    </figure>
+</div>
+
+        
+            <div class="p-4 md:p-7 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center">
+    <figure>
+        <div class="mx-auto size-[100px]">
+            <img class="mx-auto my-auto" src="/assets/img/clients/dorado.png" width="100px" height="100px">
+        </div>
+        <figcaption class="text-black dark:text-white">Alcaldia de El Dorado</figcaption>
+    </figure>
+</div>
+
+        
     </div>
 </section>
+
+        </main>
+
+        <footer class="bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <div class="w-[159.89px] h-16 bg-no-repeat bg-contain bg-[url('/assets/img/big_logo.png')] dark:bg-[url('/assets/img/big_logo_white.png')]"></div>
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Dirección</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="https://maps.app.goo.gl/mT3PAXZ5ErZQHiaG9" class="hover:underline">Carrera 20 #25-04</a>
+                      </li>
+                      <li>
+                          <h4>Villavicencio, Meta</h4>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Soporte y contacto:</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <li class="mb-4">
+                            <a href="https://wa.me/+573202497418" class="hover:underline">Cel: 320 249 7418</a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/+573125863064" class="hover:underline ">Cel: 312 586 3064</a>
+                        </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://ideal-10.com" class="hover:underline">Ideal S.A.S</a>. All Rights Reserved.
+          </span>
+      </div>
+    </div>
+</footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    </body>
+</html>

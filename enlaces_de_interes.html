@@ -1,9 +1,48 @@
----
-layout: default
-title: "Enlaces de Interes"
----
+<!DOCTYPE html>
+<html lang="es-CO">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Enlaces de Interes - Ideal</title>
+        <link rel="stylesheet" href="/assets/css/main.css">
+    </head>
+    <body class="bg-white dark:bg-gray-900">
+        <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <div class="w-[159.89px] h-16 bg-no-repeat bg-contain bg-[url('/assets/img/big_logo_green.png')] dark:bg-[url('/assets/img/big_logo_white.png')]"></div>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" onclick="location.href='contacto'" class="text-white bg-green-500 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Contáctanos</button>
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                    <a href="/" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Inicio</a>
+                </li>
+                <li>
+                    <a href="/nosotros" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">¿Quiénes somos?</a>
+                </li>
+                <li>
+                    <a href="/ideal-10" class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Ideal.10</a>
+                </li>
+                <li>
+                    <a href="/enlaces_de_interes" class="block py-2 px-3 rounded text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">Enlaces de interés</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<section class="bg-center bg-no-repeat bg-[url('/assets/img/background.jpg')] bg-cover bg-gray-700 bg-blend-multiply">
+
+        <main>
+            <section class="bg-center bg-no-repeat bg-[url('/assets/img/background.jpg')] bg-cover bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
             Enlaces de interés
@@ -28,11 +67,417 @@ title: "Enlaces de Interes"
                 </tr>
             </thead>
             <tbody>
-                {% for enlace in site.data.enlaces_de_interes %}
-                    {% include enlace_de_interes.liquid title=enlace.title url=enlace.url %}
-                {% endfor %}
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Sistema General de Regalías
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.minhacienda.gov.co/webcenter/portal/SGR" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Recursos de inspeccion vigilancia y control - Superintendencia Nacional de Salud
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.supersalud.gov.co/es-co/Paginas/Informaci%C3%B3n%20Financiera/control-financiero-de-cuentas.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Portal SGPR
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://portal.sgr.gov.co/dana-na/auth/url_VYPzsxQ2XAqyYGlL/welcome.cgi" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        ESTADO DE CUENTA ENTIDADES TERRITORIALES ADRES
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.adres.gov.co/VUD/Paginas/estados-de-cuenta.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        ADRES Regimen subsidiado resumen LMA
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.adres.gov.co/eps/regimen-subsidiado/resumen-lma" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Contable Regalias - Asignaciones mensual
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.minhacienda.gov.co/webcenter/portal/Contable/pages_contableregalias2" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Sicodis Reportes SGP » Ficha SGP - Presupuestal
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://sicodis.dnp.gov.co/ReportesSGP/FichaSGP_Entidad.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Consultas extracto movimientos Fonpet
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.minhacienda.gov.co/webcenter/portal/FONPET/pages_consultasparticularesdeentidadesterritoriales" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Documentos de Distribución de los Recursos del Sistema General de Participaciones
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.dnp.gov.co/LaEntidad_/subdireccion-general-inversiones-seguimiento-evaluacion/direccion-programacion-inversiones-publicas/Paginas/sistema-general-de-participaciones.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Tasas de interes bancario corriente - usura
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.superfinanciera.gov.co/publicaciones/10829/sala-de-prensacomunicados-de-prensa-interes-bancario-corriente-10829/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        RCP en convergencia con NIIF - NICSP
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.contaduria.gov.co/rcp-en-convergencia-con-niif-nicsp" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        CHIP- Consolidador de hacienda e información pública
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.chip.gov.co/schip_rt/index.jsf" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        GESPROY Sistema de Seguimiento, Evaluación y Control
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://ocilbprd.dnp.gov.co:14100/ssodr/oam/sgr/autenticacion.jsp" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        SIA Sistema integral de auditoria
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://siacontralorias.auditoria.gov.co/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Informe Consolidado de Evaluación de Control Interno Contable
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.contaduria.gov.co/informe-consolidado-de-control-interno-contable" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Categorización de Departamentos, distritos y municipios
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.contaduria.gov.co/categorizacion-de-departamentos-distritos-y-municipios" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Directorio de entidades públicas - SISTEMA CHIP
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.contaduria.gov.co/entidades-sector-publico" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Metodología General Ajustada - MGA
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://mgaweb.dnp.gov.co/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        PREGUNTAS FRECUENTES MGA - SUIFP
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://colaboracion.dnp.gov.co/CDT/Inversiones%20y%20finanzas%20pblicas/MGA_WEB/Banco%20Preguntas%20Frecuentes.pdf" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Aulavirtual CGN
+    </th>
+    <td class="px-2 py-1">
+        <a href="http://aulavirtual.contaduria.gov.co/login/index.php" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Aula virtual función pública
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.funcionpublica.gov.co/eva/admon/index.php" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Códigos CIIU de Actividades económicas Dian 2023
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://diancolombia.info/codigos-ciiu/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Clasificador de bienes y servicios UNSPSC
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Sistema de información de Servicios Públicos Domiciliarios
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://sui.superservicios.gov.co/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Pasivocol
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.pasivocol.gov.co/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        Trámites y servicios DIAN
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://muisca.dian.gov.co/WebIdentidadLogin" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        SIA observa
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://siaobserva.auditoria.gov.co/Login.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        RUES
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://ruesfront.rues.org.co/" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        GIROS SALUD PUBLICA
+    </th>
+    <td class="px-2 py-1">
+        <a href="https://www.minsalud.gov.co/proteccionsocial/Financiamiento/Paginas/sgp-salud-publica.aspx" target="_blank" class="block max-w-[150px] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-md px-5 py-2.5 text-center m-2">
+            Ir al sitio
+        </a>
+    </td>
+</tr>
+
+                
             </tbody>
         </table>
 
     </div>
 </div>
+
+        </main>
+
+        <footer class="bg-white dark:bg-gray-900">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <div class="w-[159.89px] h-16 bg-no-repeat bg-contain bg-[url('/assets/img/big_logo.png')] dark:bg-[url('/assets/img/big_logo_white.png')]"></div>
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Dirección</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="https://maps.app.goo.gl/mT3PAXZ5ErZQHiaG9" class="hover:underline">Carrera 20 #25-04</a>
+                      </li>
+                      <li>
+                          <h4>Villavicencio, Meta</h4>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Soporte y contacto:</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                        <li class="mb-4">
+                            <a href="https://wa.me/+573202497418" class="hover:underline">Cel: 320 249 7418</a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/+573125863064" class="hover:underline ">Cel: 312 586 3064</a>
+                        </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://ideal-10.com" class="hover:underline">Ideal S.A.S</a>. All Rights Reserved.
+          </span>
+      </div>
+    </div>
+</footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    </body>
+</html>
