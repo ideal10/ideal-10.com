@@ -13,23 +13,10 @@ title: "Enlaces de Interes"
 
 <div class="mx-11 mt-6 mb-4">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Nombre
-                    </th>
-                    <th scope="col" class="px-2 py-3">
-                        Acción
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for enlace in site.data.enlaces_de_interes %}
-                    {% include enlace_de_interes.liquid title=enlace.title url=enlace.url %}
-                {% endfor %}
-            </tbody>
-        </table>
-
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+            {% for enlace in site.data.enlaces_de_interes %}
+                {% include enlace_de_interes.liquid title=enlace.title url=enlace.url %}
+            {% endfor %}
+        </div>
     </div>
 </div>
