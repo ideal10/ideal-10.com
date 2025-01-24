@@ -10,14 +10,14 @@
 - title: Portal SPGR
   url: https://portal.sgr.gov.co/dana-na/auth/url_VYPzsxQ2XAqyYGlL/welcome.cgi
 
-- title:  ESTADO DE CUENTA ENTIDADES TERRITORIALES ADRES
+- title: Estado de cuenta entidades territoriales ADRES
   url: https://www.adres.gov.co/VUD/Paginas/estados-de-cuenta.aspx
 
 - title: ADRES Regimen subsidiado resumen LMA
   url: https://www.adres.gov.co/eps/regimen-subsidiado/resumen-lma
 
 - title: Reciprocas regalías
-  url: https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/contables-regaliass://www.minhacienda.gov.co/webcenter/portal/Contable/pages_contableregalias2
+  url: https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/contables-regalias
 
 - title: Reciprocas MinHacienda
   url: https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/estados
@@ -58,7 +58,7 @@
 - title: Metodología General Ajustada - MGA
   url: https://mgaweb.dnp.gov.co/
 
-- title: PREGUNTAS FRECUENTES MGA - SUIFP
+- title: Preguntas Frecuentes MGA - SUIFP
   url: https://colaboracion.dnp.gov.co/CDT/Inversiones%20y%20finanzas%20pblicas/MGA_WEB/Banco%20Preguntas%20Frecuentes.pdf
 
 - title: Aulavirtual CGN
@@ -85,17 +85,17 @@
 - title: SIA observa
   url: https://siaobserva.auditoria.gov.co/Login.aspx
 
-- title: RUES
+- title: Rues
   url: https://ruesfront.rues.org.co/
 
-- title: GIROS SALUD PUBLICA
+- title: Giros salud publica
   url: https://www.minsalud.gov.co/proteccionsocial/Financiamiento/Paginas/sgp-salud-publica.aspx
 
 - title: Aplicativo por la Integridad Pública
   url: https://www.funcionpublica.gov.co/fdci/login/auth
 
-- title: 'EXCEL: MATRIZ CONSULTA ENTIDADES TERRITORIAL 2024'
+- title: 'EXCEL: Matriz consulta entidades territorial 2024'
   url: '/assets/files/2024/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO_DIC_2024.xlsx'
 
-- title: 'EXCEL: MATRIZ CONSULTA ENTIDADES TERRITORIAL 2025'
+- title: 'EXCEL: Matriz consulta entidades territorial 2025'
   url: '/assets/files/2025/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO_ENE_2025.xlsx'
