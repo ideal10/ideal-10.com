@@ -1,7 +1,7 @@
 - title: Sistema de Presupuesto y Giro de Regalías - SPGR
   url: https://www.minhacienda.gov.co/sgr/spgr
 
-- title: Recursos de inspeccion vigilancia y control - Superintendencia Nacional de Salud
+- title: Recursos de inspeccin vigilancia y control
   url: https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc
 
 - title: Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud
@@ -93,6 +93,18 @@
 
 - title: Aplicativo por la Integridad Pública
   url: https://www.funcionpublica.gov.co/fdci/login/auth
+
+- title: Operaciones Recíprocas
+  url: https://www.mineducacion.gov.co/portal/micrositios-institucionales/Subdireccion-de-Gestion-Financiera/Operaciones-Reciprocas
+
+- title: Informe de financiación LMA
+  url: https://www.adres.gov.co/entidades-territoriales/financiamiento/informe-financiacion
+
+- title: URA
+  url: https://rentasterritoriales.adres.gov.co/reciprocas/operaciones-reciprocas/
+
+- title: Base gravable 2025
+  url: https://mintransporte.gov.co/publicaciones/11959/base-gravable-2025/
 
 - title: 'EXCEL: Matriz consulta entidades territorial 2024'
   url: '/assets/files/2024/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO_DIC_2024.xlsx'
