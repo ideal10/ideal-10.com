@@ -20,7 +20,7 @@ es el total del presupuesto.
 - El diseño para la aplicación de los clasificadores esta diferenciado según el ciclo presupuestal
 programación o ejecución de la siguiente manera.
 
-![](../assets/img/presupuesto.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![](../assets/img/presupuesto.png)
 
 - Para la expedición del certificado de disponibilidad presupuestal para funcionamiento y servicio
 a la deuda se utiliza el clasificador CCPET, para inversión se expide a nivel de proyecto.
