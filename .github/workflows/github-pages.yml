@@ -9,20 +9,20 @@ jobs:
   github-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
-          bundler-cache: true
+      - uses: actions/checkout@v4
+
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm install
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build site
-        uses: limjh16/jekyll-action-ts@v2
-        with:
-          enable_cache: true
+        run: npm run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
