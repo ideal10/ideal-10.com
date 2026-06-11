@@ -102,7 +102,9 @@ title: "¿Quiénes somos?"
         </div>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {% for client in clients %}
-                {% include "client.liquid", name: client.name, img: client.img %}
+                {% set name = client.name %}
+                {% set img = client.img %}
+                {% include "client.njk" %}
             {% endfor %}
         </div>
     </div>

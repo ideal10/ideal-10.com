@@ -128,7 +128,10 @@ title: "Inicio"
         </div>
         <div class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {% for service in services %}
-                {% include "service.liquid", name: service.name, description: service.description, svg: service.svg %}
+                {% set name = service.name %}
+                {% set description = service.description %}
+                {% set svg = service.svg %}
+                {% include "service.njk" %}
             {% endfor %}
         </div>
     </div>
@@ -149,7 +152,9 @@ title: "Inicio"
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
                 {% for client in clients %}
-                    {% include "client.liquid", name: client.name, img: client.img %}
+                    {% set name = client.name %}
+                {% set img = client.img %}
+                {% include "client.njk" %}
                 {% endfor %}
             </div>
         </div>

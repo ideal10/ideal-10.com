@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang or "en-US" }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ page.title }} - {{ site.title }}</title>
+        <title>{{ title }} - {{ site.title }}</title>
         <meta name="description" content="IDEAL.10: software ERP en la nube para la gestión administrativa, financiera y normativa de entidades públicas territoriales.">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
         {% include "navbar.html" %}
 
         <main class="min-h-screen">
-            {{ content }}
+            {{ content | safe }}
         </main>
 
         {% include "footer.html" %}

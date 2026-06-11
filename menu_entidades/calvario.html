@@ -1,3 +1,5 @@
 ---
 ---
-{% include "entity_menu.liquid", name: entities.calvario.name, links: entities.calvario.links %}
+{% set name = entities.calvario.name %}
+{% set links = entities.calvario.links %}
+{% include "entity_menu.njk" %}

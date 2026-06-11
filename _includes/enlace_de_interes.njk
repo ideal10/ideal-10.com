@@ -1,6 +1,7 @@
-{% assign is_file = url | slice: 0 %}
-{% assign domain = url | replace: "https://", "" | replace: "http://", "" | split: "/" | first %}
-<a href="{{ url }}" target="{{ target | default: "_blank" }}" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-800">
+{% set is_file = url | first %}
+{% set stripped = url | replace("https://", "") | replace("http://", "") %}
+{% set domain = stripped.split("/")[0] %}
+<a href="{{ url }}" target="{{ target or '_blank' }}" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-800">
     <span class="flex items-start gap-3">
         <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 {% if is_file == "/" %}bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-950 dark:text-amber-300{% else %}bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300{% endif %}">
             {% if is_file == "/" %}

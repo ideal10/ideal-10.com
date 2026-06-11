@@ -1,3 +1,5 @@
 ---
 ---
-{% include "entity_menu.liquid", name: entities.vichada.name, links: entities.vichada.links %}
+{% set name = entities.vichada.name %}
+{% set links = entities.vichada.links %}
+{% include "entity_menu.njk" %}
