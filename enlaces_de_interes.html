@@ -1,22 +1,73 @@
 ---
 layout: default
-title: "Enlaces de Interes"
+title: "Enlaces de Interés"
 ---
 
-<section>
-    <div class="mt-[81px] px-4 pt-4 mx-auto max-w-screen-xl text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight dark:text-white leading-none md:text-5xl">
-            Enlaces de interés
-        </h1>
+<section class="bg-white pt-28 pb-10 dark:bg-slate-950">
+    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Directorio operativo</p>
+            <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">Enlaces de interés para gestión pública territorial.</h1>
+            <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">Accesos frecuentes a plataformas, entidades de control, consultas normativas y matrices de apoyo para el trabajo administrativo y financiero.</p>
+        </div>
     </div>
 </section>
 
-<div class="mx-11 mt-6 mb-4">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
-            {% for enlace in site.data.enlaces_de_interes %}
-                {% include enlace_de_interes.liquid title=enlace.title url=enlace.url %}
+<section class="bg-emerald-50 py-10 dark:bg-slate-900">
+    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
+                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">{{ enlaces_de_interes | size }}</p>
+                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">recursos disponibles</p>
+            </div>
+            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
+                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">Control</p>
+                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">CHIP, SIA, CGN, SGR, ADRES y más</p>
+            </div>
+            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
+                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">Excel</p>
+                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">matrices de consulta territorial</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white py-16 dark:bg-slate-950">
+    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Portales externos</p>
+                <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Consultas, reportes y plataformas oficiales</h2>
+            </div>
+            <p class="max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">Cada tarjeta abre el recurso en una pestaña nueva.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {% for enlace in enlaces_de_interes %}
+                {% assign first_char = enlace.url | slice: 0 %}
+                {% unless first_char == "/" %}
+                    {% include "enlace_de_interes.liquid", title: enlace.title, url: enlace.url %}
+                {% endunless %}
             {% endfor %}
         </div>
     </div>
-</div>
+</section>
+
+<section class="bg-emerald-50 py-16 dark:bg-slate-900">
+    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Archivos</p>
+            <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Matrices descargables</h2>
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Documentos de apoyo para consulta de entidades territoriales y régimen subsidiado.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {% for enlace in enlaces_de_interes %}
+                {% assign first_char = enlace.url | slice: 0 %}
+                {% if first_char == "/" %}
+                    {% include "enlace_de_interes.liquid", title: enlace.title, url: enlace.url, target: "_self" %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

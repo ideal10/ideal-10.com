@@ -1,3 +1,21 @@
-<a href="{{ include.url }}" target="{{ include.target | default: "_blank" }}" class="block text-white bg-blue-400 hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm lg:text-md 2xl:text-lg px-5 py-2.5 content-center text-center m-2">
-    {{ include.title }}
+{% assign is_file = url | slice: 0 %}
+{% assign domain = url | replace: "https://", "" | replace: "http://", "" | split: "/" | first %}
+<a href="{{ url }}" target="{{ target | default: "_blank" }}" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-800">
+    <span class="flex items-start gap-3">
+        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 {% if is_file == "/" %}bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-950 dark:text-amber-300{% else %}bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300{% endif %}">
+            {% if is_file == "/" %}
+                <svg class="size-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3h7l5 5v13H7V3Zm7 0v5h5M9 14h6M9 18h6M9 10h2"/>
+                </svg>
+            {% else %}
+                <svg class="size-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/>
+                </svg>
+            {% endif %}
+        </span>
+        <span>
+            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">{{ title }}</span>
+            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">{% if is_file == "/" %}Archivo descargable{% else %}{{ domain }}{% endif %}</span>
+        </span>
+    </span>
 </a>
