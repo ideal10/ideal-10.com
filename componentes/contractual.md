@@ -1,10 +1,7 @@
 ---
 layout: components
-title: Componente administrativo
+title: Componente contractual
 ---
-
-
-## Componente contractual
 
 ### Contratación
 
