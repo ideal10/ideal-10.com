@@ -1,23 +1,254 @@
+/**
+ * IDEAL.10 — Tailwind CSS v4 stylesheet
+ * ----------------------------------------------------------------------------
+ * The project uses Tailwind v4 CSS-first configuration. Layout primitives and
+ * the design system live here as `@layer components`; pages and macros stay
+ * lean by composing these classes instead of repeating long utility strings.
+ *
+ * Conventions
+ *   - Brand color is `emerald-*`. Dark surfaces are `slate-900/950`.
+ *   - Tailwind v4 `@apply` only accepts native utilities and theme tokens,
+ *     not other component classes. That's why related components (card vs
+ *     card-interactive) duplicate their base utilities instead of composing
+ *     each other with `@apply`.
+ *   - Components that need a `group` parent are designed so the caller adds
+ *     both `.card-interactive` and `group` to the same element.
+ */
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Toggle dark mode via a `.dark` class on <html> or any ancestor. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Tailwind's content scan — keep in sync with new template directories. */
 @source "../../_includes/**/*.{html,njk,svg}";
 @source "../../_layouts/**/*.html";
 @source "../../*.html";
 @source "../../componentes/**/*.md";
 @source "../../menu_entidades/**/*.html";
 
-.\[backdrop-filter\:blur\(8px\)\] {
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+/* ------------------------------------------------------------------------- */
+/*  Base                                                                      */
+/* ------------------------------------------------------------------------- */
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
 }
 
-/* Centrar imágenes dentro de prose */
-.prose img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/* ------------------------------------------------------------------------- */
+/*  Components                                                                */
+/* ------------------------------------------------------------------------- */
+
+@layer components {
+    /* Page sections ------------------------------------------------------- */
+
+    /** Standard section on the default white background. */
+    .section {
+        @apply bg-white py-20 dark:bg-slate-950;
+    }
+
+    /** Section used immediately under the fixed navbar (extra top padding). */
+    .section-hero {
+        @apply bg-white pt-28 pb-16 dark:bg-slate-950;
+    }
+
+    /** Alternating section with a soft emerald wash. */
+    .section-alt {
+        @apply bg-emerald-50 py-20 dark:bg-slate-900;
+    }
+
+    /** Full-width emerald band (footer CTA, stats). */
+    .section-brand {
+        @apply bg-emerald-600 dark:bg-emerald-800;
+    }
+
+    /** Standard centered container used inside every section. */
+    .container-page {
+        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Typography ---------------------------------------------------------- */
+
+    /** Small uppercase label that sits above a heading. */
+    .kicker {
+        @apply text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400;
+    }
+
+    /** Same as .kicker, on emerald backgrounds. */
+    .kicker-on-brand {
+        @apply text-xs font-bold uppercase tracking-widest text-emerald-200;
+    }
+
+    /** Section heading (h2). */
+    .heading-section {
+        @apply mt-3 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl;
+    }
+
+    /** Page heading (h1). */
+    .heading-page {
+        @apply mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl;
+    }
+
+    /** Standard lead paragraph for sections. */
+    .lead {
+        @apply mt-4 text-base leading-7 text-slate-600 dark:text-slate-300;
+    }
+
+    /** Larger lead used in hero sections. */
+    .lead-lg {
+        @apply mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300;
+    }
+
+    /* Cards --------------------------------------------------------------- */
+
+    /** Base card surface. */
+    .card {
+        @apply rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900;
+    }
+
+    /** Card with hover lift — pair with `group` on the same element. */
+    .card-interactive {
+        @apply rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900;
+    }
+
+    /** Card with an emerald wash background (e.g. mission/vision). */
+    .card-soft {
+        @apply rounded-2xl border border-emerald-100 bg-emerald-50 p-6 dark:border-slate-800 dark:bg-slate-900;
+    }
+
+    /** Translucent card used over the emerald brand band. */
+    .card-on-brand {
+        @apply rounded-2xl bg-white/10 p-6 ring-1 ring-white/20 backdrop-blur-sm;
+    }
+
+    /* Icon tiles ---------------------------------------------------------- */
+
+    /** Square emerald tile that holds an icon. */
+    .icon-tile {
+        @apply flex shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300;
+    }
+
+    /** Animation applied to .icon-tile when its `.group` parent is hovered. */
+    .icon-tile-hover {
+        @apply transition duration-200 group-hover:bg-emerald-600 group-hover:text-white;
+    }
+
+    /** Round avatar-style icon tile. */
+    .icon-avatar {
+        @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300;
+    }
+
+    /** Round avatar-style tile in a muted slate palette. */
+    .icon-avatar-muted {
+        @apply flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400;
+    }
+
+    /* Buttons ------------------------------------------------------------- */
+    /* Each variant inlines the shared base utilities. Tailwind v4 `@apply`
+       does not accept another component class, so we cannot do `@apply btn`. */
+
+    /** Primary CTA — emerald fill. */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-500 hover:shadow-emerald-500/30 focus:outline-none focus:ring-4 focus:ring-emerald-200 dark:focus:ring-emerald-800;
+    }
+
+    /** Secondary CTA — outlined emerald. */
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-emerald-200 bg-white px-6 py-3.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 hover:border-emerald-300 focus:outline-none dark:border-emerald-800 dark:bg-transparent dark:text-emerald-300 dark:hover:bg-emerald-950/50;
+    }
+
+    /** White button used on the emerald CTA band. */
+    .btn-on-brand {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-emerald-700 shadow-lg shadow-emerald-900/20 transition hover:bg-emerald-50 focus:outline-none;
+    }
+
+    /** Compact pill used in the navbar header. */
+    .btn-compact-primary {
+        @apply rounded-lg bg-emerald-600 px-4 py-2 text-center text-sm font-semibold text-white shadow-sm shadow-emerald-600/20 transition hover:bg-emerald-500 hover:shadow-emerald-500/25 focus:outline-none focus:ring-4 focus:ring-emerald-200 dark:focus:ring-emerald-800;
+    }
+
+    /** Inline "read more" / "see more" link. */
+    .link-arrow {
+        @apply inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 transition hover:text-emerald-600 dark:text-emerald-400;
+    }
+
+    /* Forms --------------------------------------------------------------- */
+
+    .field-label {
+        @apply mb-2 block text-sm font-semibold text-slate-900 dark:text-white;
+    }
+
+    .field-input {
+        @apply block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:focus:ring-emerald-800;
+    }
+
+    /* Navbar -------------------------------------------------------------- */
+
+    /** Inactive top-nav link. */
+    .nav-link {
+        @apply block rounded-lg px-4 py-2 text-sm font-semibold transition text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 dark:text-slate-200 dark:hover:text-emerald-400;
+    }
+
+    /** Active top-nav link. */
+    .nav-link-active {
+        @apply block rounded-lg px-4 py-2 text-sm font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400;
+    }
+
+    /* Prose --------------------------------------------------------------- */
+
+    /** Center images inside .prose containers. */
+    .prose img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
+/* ------------------------------------------------------------------------- */
+/*  Animations                                                                */
+/* ------------------------------------------------------------------------- */
+
+/**
+ * Infinite-scroll ticker used on the "Nosotros" page.
+ *
+ * `clients-ticker.js` measures the offset of the first cloned item and writes
+ * it to `--clients-shift` on the track. The CSS keyframe translates the track
+ * by exactly that distance so the loop is seamless. The `data-animated`
+ * attribute is also set by JS once the measurement succeeds; the CSS uses it
+ * to pause the animation on hover.
+ */
+.clients-ticker {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.clients-track {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    margin: 0;
+    list-style: none;
+    will-change: transform;
+}
+
+.clients-track[data-animated="true"] {
+    animation: clients-scroll 25s linear infinite;
+}
+
+.clients-track[data-animated="true"]:hover {
+    animation-play-state: paused;
+}
+
+@keyframes clients-scroll {
+    to {
+        transform: translateX(calc(var(--clients-shift, 0px) * -1));
+    }
+}

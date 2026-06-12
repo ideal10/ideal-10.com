@@ -1,11 +1,13 @@
 ---
 layout: default
 ---
+{% from "macros.njk" import chevron_left %}
+
 <section class="bg-white pt-28 pb-4 dark:bg-slate-950">
-    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <div class="container-page">
         <div class="flex items-center gap-2">
             <a href="/ideal-10" class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:bg-slate-800">
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 6 10" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 1 1 5l4 4"/></svg>
+                {{ chevron_left() }}
                 Volver a IDEAL.10
             </a>
         </div>
@@ -15,7 +17,7 @@ layout: default
     </div>
 </section>
 
-<article class="prose mx-auto max-w-screen-xl bg-white px-4 py-8 dark:prose-invert dark:bg-slate-950 lg:prose-lg lg:py-12">
+<article class="prose container-page bg-white py-8 dark:prose-invert dark:bg-slate-950 lg:prose-lg lg:py-12">
     <div class="mb-8 rounded-2xl border border-emerald-100 bg-emerald-50 p-8 dark:border-slate-800 dark:bg-slate-900 md:p-12">
         {{ content | safe }}
     </div>
