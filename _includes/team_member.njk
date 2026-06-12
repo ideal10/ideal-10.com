@@ -1,0 +1,12 @@
+{# Team member card rendered from `_data/team.yml`.
+   Expected context: `name`, `role`, `lead`. #}
+{% from "macros.njk" import user_icon %}
+<li class="rounded-2xl border border-white bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+    <div class="flex items-center gap-4">
+        <div class="{% if lead %}icon-avatar{% else %}icon-avatar-muted{% endif %}">{{ user_icon() }}</div>
+        <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white">{{ name }}</h3>
+            <span class="mt-1 inline-block rounded-full {% if lead %}bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300{% else %}bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300{% endif %} px-2.5 py-0.5 text-xs font-semibold">{{ role }}</span>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,18 @@
+- name: Omar Gutierrez Cruz
+  role: Gerente
+  lead: true
+- name: Ricardo Lindarte Ortega
+  role: Gerente de ingeniería
+  lead: true
+- name: Horacio Andrés Fereira
+  role: Programador
+  lead: false
+- name: Sebastian Murcia
+  role: Programador
+  lead: false
+- name: David Parrado
+  role: Programador
+  lead: false
+- name: Joseph Díaz Gonzalez
+  role: Programador
+  lead: false
