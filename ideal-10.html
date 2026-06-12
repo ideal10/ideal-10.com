@@ -2,19 +2,58 @@
 layout: default
 title: "Ideal.10"
 ---
+{% from "macros.njk" import arrow_right %}
 
-<section class="bg-white pt-28 pb-16 dark:bg-slate-950">
-    <div class="mx-auto grid max-w-screen-xl gap-12 px-4 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-8">
+{# Component cards data. Order matches the displayed grid; the last item
+   spans two columns at the sm/lg breakpoints. `paths` is a list so multi-path
+   icons can be rendered without string-splitting tricks. #}
+{% set components = [
+    {
+        href: "/componentes/financiero",
+        name: "Componente financiero",
+        body: "Presupuesto y contabilidad para seguimiento de recursos, ejecución y reportes.",
+        paths: ["M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"]
+    },
+    {
+        href: "/componentes/administrativo",
+        name: "Componente administrativo",
+        body: "Tesorería, gestión humana, activos y almacén para la operación institucional.",
+        paths: ["M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"]
+    },
+    {
+        href: "/componentes/planeacion",
+        name: "Componente planeación",
+        body: "Planeación estratégica y articulación con la gestión de la entidad.",
+        paths: ["M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"]
+    },
+    {
+        href: "/componentes/contractual",
+        name: "Componente contractual",
+        body: "Gestión de contratación y soporte documental para procesos institucionales.",
+        paths: ["M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"]
+    },
+    {
+        href: "/componentes/apoyo_administracion",
+        name: "Apoyo a la administración",
+        body: "Herramientas MIPG, administración del software, informes y parametrización para adaptar el sistema al trabajo real de cada entidad.",
+        paths: [
+            "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+            "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+        ],
+        wide: true
+    }
+] %}
+
+{# HERO ------------------------------------------------------------------ #}
+<section class="section-hero">
+    <div class="container-page grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
         <div>
-            <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">IDEAL.10</p>
-            <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">Software ERP para ordenar procesos críticos de entidades públicas.</h1>
+            <p class="kicker">IDEAL.10</p>
+            <h1 class="heading-page">Software ERP para ordenar procesos críticos de entidades públicas.</h1>
             <p class="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">IDEAL.10 integra información administrativa y financiera para responder a necesidades de operación, control, informes y cumplimiento normativo en entidades territoriales.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="/contacto" class="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-500">
-                    Solicitar información
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </a>
-                <a href="/enlaces_de_interes" class="inline-flex items-center justify-center rounded-xl border-2 border-emerald-200 px-6 py-3.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50 hover:border-emerald-300 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-800">Recursos de apoyo</a>
+                <a href="/contacto" class="btn-primary">Solicitar información {{ arrow_right() }}</a>
+                <a href="/enlaces_de_interes" class="btn-secondary">Recursos de apoyo</a>
             </div>
         </div>
         <div class="overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-2xl shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900">
@@ -23,96 +62,50 @@ title: "Ideal.10"
     </div>
 </section>
 
-<section class="bg-emerald-600 py-14 dark:bg-emerald-800">
-    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+{# FEATURE BAND --------------------------------------------------------- #}
+<section class="section-brand py-14">
+    <div class="container-page">
         <div class="grid gap-6 md:grid-cols-3">
-            <div class="rounded-2xl bg-white/10 p-6 ring-1 ring-white/20 backdrop-blur-sm">
+            {% for feature in [
+                { kicker: "Nube",        name: "Acceso web",                body: "Operación desde navegador, sin depender de instalaciones locales complejas.",                       path: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" },
+                { kicker: "Integración", name: "Procesos conectados",       body: "Componentes financieros, administrativos, contractuales y de planeación bajo una misma lógica.", path: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" },
+                { kicker: "Soporte",     name: "Acompañamiento técnico",    body: "Capacitación, mantenimiento y adaptación a necesidades operativas y normativas.",                 path: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" }
+            ] %}
+            <div class="card-on-brand">
                 <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="{{ feature.path }}"/></svg>
                 </div>
-                <p class="text-xs font-bold uppercase tracking-widest text-emerald-200">Nube</p>
-                <h2 class="mt-1 text-xl font-bold text-white">Acceso web</h2>
-                <p class="mt-2 text-sm leading-6 text-emerald-100">Operación desde navegador, sin depender de instalaciones locales complejas.</p>
+                <p class="kicker-on-brand">{{ feature.kicker }}</p>
+                <h2 class="mt-1 text-xl font-bold text-white">{{ feature.name }}</h2>
+                <p class="mt-2 text-sm leading-6 text-emerald-100">{{ feature.body }}</p>
             </div>
-            <div class="rounded-2xl bg-white/10 p-6 ring-1 ring-white/20 backdrop-blur-sm">
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                </div>
-                <p class="text-xs font-bold uppercase tracking-widest text-emerald-200">Integración</p>
-                <h2 class="mt-1 text-xl font-bold text-white">Procesos conectados</h2>
-                <p class="mt-2 text-sm leading-6 text-emerald-100">Componentes financieros, administrativos, contractuales y de planeación bajo una misma lógica.</p>
-            </div>
-            <div class="rounded-2xl bg-white/10 p-6 ring-1 ring-white/20 backdrop-blur-sm">
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 text-white">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                </div>
-                <p class="text-xs font-bold uppercase tracking-widest text-emerald-200">Soporte</p>
-                <h2 class="mt-1 text-xl font-bold text-white">Acompañamiento técnico</h2>
-                <p class="mt-2 text-sm leading-6 text-emerald-100">Capacitación, mantenimiento y adaptación a necesidades operativas y normativas.</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="bg-white py-20 dark:bg-slate-950">
-    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+{# COMPONENTS GRID ----------------------------------------------------- #}
+<section class="section">
+    <div class="container-page">
         <div class="max-w-3xl">
-            <p class="text-sm font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Componentes</p>
-            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Módulos para el ciclo administrativo territorial.</h2>
-            <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">El sistema agrupa procesos que normalmente exigen trazabilidad, reportes, consistencia contable y respuesta oportuna ante entes de control.</p>
+            <p class="kicker">Componentes</p>
+            <h2 class="heading-section">Módulos para el ciclo administrativo territorial.</h2>
+            <p class="lead">El sistema agrupa procesos que normalmente exigen trazabilidad, reportes, consistencia contable y respuesta oportuna ante entes de control.</p>
         </div>
 
         <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <a href="/componentes/financiero" class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition duration-200 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            {% for c in components %}
+            <a href="{{ c.href }}" class="card-interactive group{% if c.wide %} sm:col-span-2 lg:col-span-2{% endif %}">
+                <div class="icon-tile icon-tile-hover mb-4 h-11 w-11 dark:group-hover:bg-emerald-600 dark:group-hover:text-white">
+                    <svg class="h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                        {% for d in c.paths %}<path stroke-linecap="round" stroke-linejoin="round" d="{{ d }}"/>{% endfor %}
+                    </svg>
                 </div>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white">Componente financiero</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Presupuesto y contabilidad para seguimiento de recursos, ejecución y reportes.</p>
-                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                    Leer más <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </span>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">{{ c.name }}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{{ c.body }}</p>
+                <span class="link-arrow mt-4">Leer más {{ arrow_right("h-3.5 w-3.5") }}</span>
             </a>
-            <a href="/componentes/administrativo" class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition duration-200 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white">Componente administrativo</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Tesorería, gestión humana, activos y almacén para la operación institucional.</p>
-                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                    Leer más <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </span>
-            </a>
-            <a href="/componentes/planeacion" class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition duration-200 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white">Componente planeación</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Planeación estratégica y articulación con la gestión de la entidad.</p>
-                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                    Leer más <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </span>
-            </a>
-            <a href="/componentes/contractual" class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition duration-200 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white">Componente contractual</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Gestión de contratación y soporte documental para procesos institucionales.</p>
-                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                    Leer más <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </span>
-            </a>
-            <a href="/componentes/apoyo_administracion" class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900 sm:col-span-2 lg:col-span-2">
-                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 transition duration-200 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white">Apoyo a la administración</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Herramientas MIPG, administración del software, informes y parametrización para adaptar el sistema al trabajo real de cada entidad.</p>
-                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                    Leer más <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </span>
-            </a>
+            {% endfor %}
         </div>
     </div>
 </section>

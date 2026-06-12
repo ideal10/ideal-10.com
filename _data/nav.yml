@@ -1,0 +1,11 @@
+# Top-level navigation. Order matches navbar display order.
+# `url` is matched against `page.url` to mark the active link.
+- url: /
+  label: Inicio
+  match: ["/", "/index"]
+- url: /nosotros
+  label: ¿Quiénes somos?
+- url: /ideal-10
+  label: Ideal.10
+- url: /enlaces_de_interes
+  label: Enlaces de interés

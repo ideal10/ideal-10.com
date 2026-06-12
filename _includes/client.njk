@@ -1,4 +1,6 @@
-<div class="flex min-h-36 items-center justify-center rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
+{# Client logo card used in the home page grid.
+   Expected context: `name`, `img`. #}
+<div class="card-interactive flex min-h-36 items-center justify-center p-5">
     <figure class="text-center">
         <div class="mx-auto flex size-24 items-center justify-center">
             <img class="max-h-24 max-w-24 object-contain transition duration-200 hover:scale-105" src="/assets/img/clients/{{ img }}" width="100" height="100" alt="{{ name }}">
