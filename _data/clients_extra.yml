@@ -1,0 +1,8 @@
+# Additional clients shown only in the Nosotros ticker — kept out of the
+# home page grid. Same shape as `clients.yml`: { name, img }. Image files
+# live in `assets/img/clients/`.
+
+- name: Concejo de Cubarral
+  img: concejo-cubarral.png
+- name: Personeria de Cubarral
+  img: personeria-cubarral.png
