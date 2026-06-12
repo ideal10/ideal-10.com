@@ -3,17 +3,15 @@ layout: components
 title: Componente administrativo
 ---
 
-## Componente administrativo
-
-### Tesorería.
+### Tesorería
 
 - Efectúa los procesos de las entradas y salidas de recursos con y sin situación de fondos, registra documentos de tipo administrativo, provee insumos a contabilidad, presupuesto, planeación estratégica, almacén, control de activos, controla impuestos, tasas y contribuciones, registre las obligaciones y egresos.
 - Incluye en este modulo los procesos de gestión predial e industria y comercio.
 
-### Gestión Humana.
+### Gestión humana
 - Registra, caracteriza y controla el recurso humano de la entidad, el proceso de nómina se debe desarrollar con insumos de la caracterización de cargos y niveles salariales iniciando en un proceso de contractual de funcionarios, solicita automáticamente el CDP (certificado de disponibilidad presupuestal) al módulo de presupuesto, este documento es necesario para la aprobación de la nómina, debe entregar insumo para pago de salarios y prestaciones sociales al módulo de tesorería.
 
-### Control de activos.
+### Control de activos
 - El módulo de control de activos, que utiliza un sistema de placas para cada activo, se divide
 en cuatro secciones:
 1. Archivos Maestros: En esta sección se clasifica la información de los activos, incluyendo la
@@ -30,7 +28,7 @@ responsables, para facilitar el control de los activos asignados a terceros.
 módulos, informes para la contraloría y hojas de inventario.
 - Este enfoque integral permite una gestión eficiente y organizada de los activos de la entidad.
 
-### Almacén.
+### Almacén
 - El módulo está diseñado bajo la metodología tipo “Kardex” y se divide en cuatro secciones:
 1. Archivos Maestros: En esta sección se definen las características del almacén, incluyendo la
 creación de grupos de inventario, artículos, bodegas, unidades de medida y tipos de
