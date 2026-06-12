@@ -2,17 +2,6 @@
 layout: default
 title: "¿Quiénes somos?"
 ---
-{% from "macros.njk" import user_icon %}
-
-{# Team data — small enough to live alongside the markup. #}
-{% set team = [
-    { name: "Omar Gutierrez Cruz",     role: "Gerente",                 lead: true },
-    { name: "Ricardo Lindarte Ortega", role: "Gerente de ingeniería",   lead: true },
-    { name: "Horacio Andrés Fereira",  role: "Programador",             lead: false },
-    { name: "Sebastian Murcia",        role: "Programador",             lead: false },
-    { name: "David Parrado",           role: "Programador",             lead: false, wide: true }
-] %}
-
 {# INTRO ----------------------------------------------------------------- #}
 <section class="section-hero">
     <div class="container-page">
@@ -48,15 +37,10 @@ title: "¿Quiénes somos?"
             </div>
             <ul role="list" class="grid gap-4 sm:grid-cols-2">
                 {% for member in team %}
-                <li class="rounded-2xl border border-white bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950{% if member.wide %} sm:col-span-2{% endif %}">
-                    <div class="flex items-center gap-4">
-                        <div class="{% if member.lead %}icon-avatar{% else %}icon-avatar-muted{% endif %}">{{ user_icon() }}</div>
-                        <div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white">{{ member.name }}</h3>
-                            <span class="mt-1 inline-block rounded-full {% if member.lead %}bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300{% else %}bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300{% endif %} px-2.5 py-0.5 text-xs font-semibold">{{ member.role }}</span>
-                        </div>
-                    </div>
-                </li>
+                    {% set name = member.name %}
+                    {% set role = member.role %}
+                    {% set lead = member.lead %}
+                    {% include "team_member.njk" %}
                 {% endfor %}
             </ul>
         </div>
