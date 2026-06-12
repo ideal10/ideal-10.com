@@ -117,16 +117,19 @@ title: "¿Quiénes somos?"
 (function () {
     var track = document.getElementById('clients-track');
     if (!track) return;
-    var originalWidth = track.scrollWidth;
     var items = Array.from(track.children);
+    var count = items.length;
     items.forEach(function (item) {
         var clone = item.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         track.appendChild(clone);
     });
+    var x = Math.round(track.children[count].getBoundingClientRect().left - track.getBoundingClientRect().left);
+    if (x <= 0) return;
     var styleEl = document.createElement('style');
-    styleEl.textContent = '@keyframes clients-scroll{to{transform:translateX(-' + originalWidth + 'px)}}';
+    styleEl.textContent = '@keyframes clients-scroll{to{transform:translateX(-' + x + 'px)}}';
     document.head.appendChild(styleEl);
+    track.style.willChange = 'transform';
     track.style.animation = '25s linear infinite clients-scroll';
     track.addEventListener('mouseenter', function () { track.style.animationPlayState = 'paused'; });
     track.addEventListener('mouseleave', function () { track.style.animationPlayState = 'running'; });
