@@ -1,6 +1,6 @@
 - name: Alcaldia de Cubarral
   img: cubarral.png
-- name: Alcaldia del Castillo
+- name: Alcaldia de El Castillo
   img: castillo.png
 - name: Alcaldia de Cumaribo
   img: cumaribo.png
@@ -8,7 +8,7 @@
   img: san-juanito.png
 - name: Alcaldia de Santa Rosalia
   img: santa-rosalia.png
-- name: Alcaldia del Dorado
+- name: Alcaldia de El Dorado
   img: dorado.png
 - name: Alcaldia de San Juan de Arama
   img: san-juan-arama.png
@@ -18,5 +18,5 @@
   img: empca.png
 - name: Aguas de Rosalía E.S.P
   img: aguas-rosalia.png
-- name: Aguas del Castillo E.S.P
+- name: Aguas de El Castillo E.S.P
   img: aguas-castillo.png
