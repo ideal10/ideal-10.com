@@ -7,9 +7,11 @@
  * running on.
  */
 import { initClientsTicker } from "./clients-ticker.js";
+import { initReveal } from "./reveal.js";
 
 function boot() {
     initClientsTicker();
+    initReveal();
 }
 
 if (document.readyState === "loading") {
