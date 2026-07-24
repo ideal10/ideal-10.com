@@ -238,8 +238,24 @@ a.split-card.s-hidden { display: none; }
 /* responsive */
 @media (max-width: 768px) {
   .split-layout { flex-direction: column; height: auto; }
-  .split-sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; }
-  .split-main { overflow: visible; }
+
+  .split-sidebar {
+    width: 100%; height: auto;
+    border-right: none; border-bottom: 1px solid #e2e8f0;
+    position: static;
+    padding: 20px 16px 16px;
+  }
+
+  .split-sidebar h1 { font-size: 16px; }
+  .split-stats, .s-lead, .split-footer { display: none; }
+  .split-search { margin-top: 12px; }
+
+  .split-main { min-height: auto; padding: 16px 12px 40px; }
+
+  .split-grid { grid-template-columns: 1fr; }
+
+  .split-group-heading { margin-top: 20px; font-size: 10px; }
+  .split-group-heading:first-child { margin-top: 0; }
 }
 </style>
 
