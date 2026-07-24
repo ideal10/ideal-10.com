@@ -75,1070 +75,1242 @@
 
         <main class="min-h-screen">
             
+<style>
+.split-layout {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 4.25rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── Panel izquierdo — sticky ── */
+.split-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, #f0fdf9 0%, #fff 100%);
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 28px 28px;
+  overflow: hidden;
+  position: sticky;
+  top: 4.25rem;
+  height: calc(100dvh - 4.25rem);
+}
+
+.split-sidebar .s-kicker {
+  font-size: 10px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: #059669; margin-bottom: 12px;
+}
+
+.split-sidebar h1 {
+  font-size: 20px; font-weight: 800; color: #0f172a;
+  line-height: 1.3; letter-spacing: -.02em;
+}
+
+.split-sidebar .s-lead {
+  margin-top: 12px; font-size: 12.5px; color: #64748b; line-height: 1.7;
+}
+
+.split-stats {
+  display: flex; flex-direction: column; gap: 8px; margin-top: 24px;
+}
+
+.split-stat {
+  background: #fff; border: 1px solid #d1fae5;
+  border-radius: 12px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.split-stat-num {
+  font-size: 22px; font-weight: 800; color: #059669; line-height: 1;
+}
+
+.split-stat-label { font-size: 12px; font-weight: 600; color: #334155; }
+.split-stat-sub   { font-size: 10.5px; color: #94a3b8; margin-top: 2px; }
+
+/* buscador */
+.split-search { margin-top: 24px; position: relative; }
+.split-search input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #1e293b; font-size: 13.5px;
+  outline: none;
+  transition: border-color .15s;
+}
+.split-search input::placeholder { color: #94a3b8; }
+.split-search input:focus { border-color: #10b981; }
+.split-search svg {
+  position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%); color: #94a3b8; pointer-events: none;
+}
+.split-search:focus-within svg { color: #059669; }
+.s-count {
+  margin-top: 8px; font-size: 11px; color: #94a3b8; min-height: 16px;
+}
+.s-count.active { color: #059669; font-weight: 600; }
+
+.split-footer {
+  margin-top: auto; padding-top: 24px;
+  font-size: 11px; color: #94a3b8; line-height: 1.6;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── Panel derecho — scroll de la página ── */
+.split-main {
+  flex: 1;
+  background: #f8fafc;
+  padding: 28px 24px 60px;
+  min-height: calc(100dvh - 4.25rem);
+}
+
+.split-group-heading {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: #64748b;
+  margin-bottom: 12px; margin-top: 28px; padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.split-group-heading:first-child { margin-top: 0; }
+.split-group-count {
+  background: #e2e8f0; color: #64748b;
+  border-radius: 6px; padding: 1px 7px; font-size: 10px;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+/* tarjeta */
+a.split-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px; border-radius: 14px;
+  border: 1px solid #e2e8f0; background: #fff;
+  text-decoration: none;
+  transition: transform .12s, box-shadow .12s, border-color .12s;
+}
+a.split-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  border-color: #34d399;
+}
+a.split-card.is-file:hover { border-color: #f59e0b; }
+
+.split-card-icon {
+  width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: #ecfdf5; color: #059669;
+}
+a.split-card.is-file .split-card-icon { background: #fffbeb; color: #d97706; }
+a.split-card:not(.is-file):hover .split-card-icon { background: #059669; color: #fff; }
+a.split-card.is-file:hover .split-card-icon { background: #f59e0b; color: #fff; }
+
+.split-card-body { flex: 1; min-width: 0; }
+.split-card-title {
+  font-size: 12.5px; font-weight: 600; color: #1e293b;
+  line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+a.split-card:not(.is-file):hover .split-card-title { color: #059669; }
+a.split-card.is-file:hover .split-card-title { color: #d97706; }
+.split-card-meta {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .04em; color: #94a3b8; margin-top: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+a.split-card.s-hidden { display: none; }
+
+/* vacío */
+.split-empty {
+  grid-column: 1/-1; text-align: center;
+  padding: 48px 0; color: #94a3b8; display: none;
+}
+.split-empty svg { margin: 0 auto 12px; display: block; opacity: .3; }
+.split-empty p { font-size: 14px; }
+
+/* responsive */
+@media (max-width: 768px) {
+  .split-layout { flex-direction: column; height: auto; }
+  .split-sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; }
+  .split-main { overflow: visible; }
+}
+</style>
 
 
-<section class="bg-white pt-28 pb-10 dark:bg-slate-950">
-    <div class="container-page">
-        <div class="max-w-3xl">
-            <p class="kicker">Directorio operativo</p>
-            <h1 class="heading-page">Enlaces de interés para gestión pública territorial.</h1>
-            <p class="lead-lg">Accesos frecuentes a plataformas, entidades de control, consultas normativas y matrices de apoyo para el trabajo administrativo y financiero.</p>
+
+
+
+
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+<div class="split-layout">
+
+  <!-- ═══════════════════════════
+       IZQUIERDA — hero + buscador
+  ═══════════════════════════ -->
+  <aside class="split-sidebar">
+    <p class="s-kicker">Directorio operativo</p>
+    <h1>Enlaces de interés para gestión pública territorial.</h1>
+    <p class="s-lead">Accesos frecuentes a plataformas, entidades de control, consultas normativas y matrices de apoyo administrativo y financiero.</p>
+
+    <div class="split-stats">
+      <div class="split-stat">
+        <div class="split-stat-num">37</div>
+        <div>
+          <div class="split-stat-label">Portales externos</div>
+          <div class="split-stat-sub">CHIP · SIA · CGN · SGR · ADRES y más</div>
         </div>
+      </div>
+      <div class="split-stat">
+        <div class="split-stat-num">1</div>
+        <div>
+          <div class="split-stat-label">Matrices descargables</div>
+          <div class="split-stat-sub">Excel · Consulta territorial</div>
+        </div>
+      </div>
     </div>
-</section>
 
-<section class="bg-emerald-50 py-10 dark:bg-slate-900">
-    <div class="container-page">
-        <div class="grid gap-4 sm:grid-cols-3">
-            
-            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">37</p>
-                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">recursos disponibles</p>
-            </div>
-            
-            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">Control</p>
-                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">CHIP, SIA, CGN, SGR, ADRES y más</p>
-            </div>
-            
-            <div class="rounded-2xl border border-emerald-100 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                <p class="text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">Excel</p>
-                <p class="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-400">matrices de consulta territorial</p>
-            </div>
-            
-        </div>
+    <div class="split-search">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="splitSearch" placeholder="Buscar enlace…">
     </div>
-</section>
+    <div class="s-count" id="splitCount"></div>
 
-<section class="bg-white py-16 dark:bg-slate-950">
-    <div class="container-page">
-        <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-                <p class="kicker">Portales externos</p>
-                <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Consultas, reportes y plataformas oficiales</h2>
+    <div class="split-footer">
+      Cada portal abre en una pestaña nueva.<br>
+      Las matrices se descargan directamente.
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════
+       DERECHA — tarjetas (scroll)
+  ═══════════════════════════ -->
+  <main class="split-main">
+
+    <div class="split-group-heading">
+      Portales externos
+      <span class="split-group-count" id="countPortales">37</span>
+    </div>
+
+    <div class="split-grid" id="gridPortales">
+      
+        
+          
+          
+          <a href="https://www.minhacienda.gov.co/sgr/spgr" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="sistema de presupuesto y giro de regalías - spgr">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Sistema de Presupuesto y Giro de Regalías - SPGR</div>
+              <div class="split-card-meta">www.minhacienda.gov.co</div>
             </div>
-            <p class="max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">Cada tarjeta abre el recurso en una pestaña nueva.</p>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.minhacienda.gov.co/sgr/spgr" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Sistema de Presupuesto y Giro de Regalías - SPGR</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.minhacienda.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Recursos de inspección vigilancia y control</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.adres.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.supersalud.gov.co/es-co/Paginas/Informaci%C3%B3n%20Financiera/control-financiero-de-cuentas.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.supersalud.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://portal.sgr.gov.co/dana-na/auth/url_VYPzsxQ2XAqyYGlL/welcome.cgi" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Portal SPGR</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">portal.sgr.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.adres.gov.co/VUD/Paginas/estados-de-cuenta.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Estado de cuenta entidades territoriales ADRES</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.adres.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.adres.gov.co/eps/regimen-subsidiado/resumen-lma" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">ADRES Regimen subsidiado resumen LMA</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.adres.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/contables-regalias" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Reciprocas regalías</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.minhacienda.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/estados" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Reciprocas MinHacienda</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.minhacienda.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://sicodis.dnp.gov.co/ReportesSGP/FichaSGP_Entidad.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Sicodis Reportes SGP » Ficha SGP - Presupuestal</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">sicodis.dnp.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.minhacienda.gov.co/seguridad-social-dress/fonpet/consultas-particulares-de-entidades-territoriales" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Consultas Particulares de Entidades Territoriales</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.minhacienda.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.dnp.gov.co/LaEntidad_/subdireccion-general-inversiones-seguimiento-evaluacion/direccion-programacion-inversiones-publicas/Paginas/sistema-general-de-participaciones.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Documentos de Distribución de los Recursos del Sistema General de Participaciones</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.dnp.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.superfinanciera.gov.co/publicaciones/10829/sala-de-prensacomunicados-de-prensa-interes-bancario-corriente-10829/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Tasas de interes bancario corriente - usura</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.superfinanciera.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.contaduria.gov.co/rcp-en-convergencia-con-niif-nicsp" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">RCP en convergencia con NIIF - NICSP</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.contaduria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.chip.gov.co/schip_rt/index.jsf" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">CHIP- Consolidador de hacienda e información pública</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.chip.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://ocilbprd.dnp.gov.co:14100/ssodr/oam/sgr/autenticacion.jsp" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">GESPROY Sistema de Seguimiento, Evaluación y Control</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">ocilbprd.dnp.gov.co:14100</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://siacontralorias.auditoria.gov.co/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">SIA Sistema integral de auditoria</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">siacontralorias.auditoria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.contaduria.gov.co/informe-consolidado-de-control-interno-contable" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Informe Consolidado de Evaluación de Control Interno Contable</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.contaduria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.contaduria.gov.co/categorizacion-de-departamentos-distritos-y-municipios" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Categorización de Departamentos, distritos y municipios</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.contaduria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.contaduria.gov.co/entidades-sector-publico" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Directorio de entidades públicas - SISTEMA CHIP</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.contaduria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://mgaweb.dnp.gov.co/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Metodología General Ajustada - MGA</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">mgaweb.dnp.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://colaboracion.dnp.gov.co/CDT/Inversiones%20y%20finanzas%20pblicas/MGA_WEB/Banco%20Preguntas%20Frecuentes.pdf" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Preguntas Frecuentes MGA - SUIFP</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">colaboracion.dnp.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="http://aulavirtual.contaduria.gov.co/login/index.php" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Aulavirtual CGN</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">aulavirtual.contaduria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.funcionpublica.gov.co/eva/admon/index.php" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Aula virtual función pública</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.funcionpublica.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://diancolombia.info/codigos-ciiu/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Códigos CIIU de Actividades económicas Dian 2023</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">diancolombia.info</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Clasificador de bienes y servicios UNSPSC</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.colombiacompra.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://sui.superservicios.gov.co/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Sistema de información de Servicios Públicos Domiciliarios</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">sui.superservicios.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.pasivocol.gov.co/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Pasivocol</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.pasivocol.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://muisca.dian.gov.co/WebIdentidadLogin" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Trámites y servicios DIAN</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">muisca.dian.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://siaobserva.auditoria.gov.co/Login.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">SIA observa</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">siaobserva.auditoria.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://ruesfront.rues.org.co/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Rues</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">ruesfront.rues.org.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.minsalud.gov.co/proteccionsocial/Financiamiento/Paginas/sgp-salud-publica.aspx" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Giros salud publica</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.minsalud.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.funcionpublica.gov.co/fdci/login/auth" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Aplicativo por la Integridad Pública</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.funcionpublica.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.mineducacion.gov.co/portal/micrositios-institucionales/Subdireccion-de-Gestion-Financiera/Operaciones-Reciprocas" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Operaciones Recíprocas</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.mineducacion.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://www.adres.gov.co/entidades-territoriales/financiamiento/informe-financiacion" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Informe de financiación LMA</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">www.adres.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://rentasterritoriales.adres.gov.co/reciprocas/operaciones-reciprocas/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">URA</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">rentasterritoriales.adres.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-                    
-                    
-                    
-
-
-
-
-
-<a href="https://mintransporte.gov.co/publicaciones/11959/base-gravable-2025/" target="_blank" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-emerald-50 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950 dark:text-emerald-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H18v4.5M18 6l-8 8M6 8v10h10"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">Base gravable 2025</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">mintransporte.gov.co</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-                
-            
-        </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="recursos de inspección vigilancia y control">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Recursos de inspección vigilancia y control</div>
+              <div class="split-card-meta">www.adres.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.supersalud.gov.co/es-co/Paginas/Informaci%C3%B3n%20Financiera/control-financiero-de-cuentas.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="conciliación de operaciones reciprocas - superintendencia nacional de salud">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud</div>
+              <div class="split-card-meta">www.supersalud.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://portal.sgr.gov.co/dana-na/auth/url_VYPzsxQ2XAqyYGlL/welcome.cgi" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="portal spgr">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Portal SPGR</div>
+              <div class="split-card-meta">portal.sgr.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.adres.gov.co/VUD/Paginas/estados-de-cuenta.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="estado de cuenta entidades territoriales adres">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Estado de cuenta entidades territoriales ADRES</div>
+              <div class="split-card-meta">www.adres.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.adres.gov.co/eps/regimen-subsidiado/resumen-lma" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="adres regimen subsidiado resumen lma">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">ADRES Regimen subsidiado resumen LMA</div>
+              <div class="split-card-meta">www.adres.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/contables-regalias" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="reciprocas regalías">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Reciprocas regalías</div>
+              <div class="split-card-meta">www.minhacienda.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/estados" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="reciprocas minhacienda">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Reciprocas MinHacienda</div>
+              <div class="split-card-meta">www.minhacienda.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://sicodis.dnp.gov.co/ReportesSGP/FichaSGP_Entidad.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="sicodis reportes sgp » ficha sgp - presupuestal">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Sicodis Reportes SGP » Ficha SGP - Presupuestal</div>
+              <div class="split-card-meta">sicodis.dnp.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.minhacienda.gov.co/seguridad-social-dress/fonpet/consultas-particulares-de-entidades-territoriales" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="consultas particulares de entidades territoriales">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Consultas Particulares de Entidades Territoriales</div>
+              <div class="split-card-meta">www.minhacienda.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.dnp.gov.co/LaEntidad_/subdireccion-general-inversiones-seguimiento-evaluacion/direccion-programacion-inversiones-publicas/Paginas/sistema-general-de-participaciones.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="documentos de distribución de los recursos del sistema general de participaciones">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Documentos de Distribución de los Recursos del Sistema General de Participaciones</div>
+              <div class="split-card-meta">www.dnp.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.superfinanciera.gov.co/publicaciones/10829/sala-de-prensacomunicados-de-prensa-interes-bancario-corriente-10829/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="tasas de interes bancario corriente - usura">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Tasas de interes bancario corriente - usura</div>
+              <div class="split-card-meta">www.superfinanciera.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.contaduria.gov.co/rcp-en-convergencia-con-niif-nicsp" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="rcp en convergencia con niif - nicsp">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">RCP en convergencia con NIIF - NICSP</div>
+              <div class="split-card-meta">www.contaduria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.chip.gov.co/schip_rt/index.jsf" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="chip- consolidador de hacienda e información pública">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">CHIP- Consolidador de hacienda e información pública</div>
+              <div class="split-card-meta">www.chip.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://ocilbprd.dnp.gov.co:14100/ssodr/oam/sgr/autenticacion.jsp" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="gesproy sistema de seguimiento, evaluación y control">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">GESPROY Sistema de Seguimiento, Evaluación y Control</div>
+              <div class="split-card-meta">ocilbprd.dnp.gov.co:14100</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://siacontralorias.auditoria.gov.co/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="sia sistema integral de auditoria">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">SIA Sistema integral de auditoria</div>
+              <div class="split-card-meta">siacontralorias.auditoria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.contaduria.gov.co/informe-consolidado-de-control-interno-contable" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="informe consolidado de evaluación de control interno contable">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Informe Consolidado de Evaluación de Control Interno Contable</div>
+              <div class="split-card-meta">www.contaduria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.contaduria.gov.co/categorizacion-de-departamentos-distritos-y-municipios" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="categorización de departamentos, distritos y municipios">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Categorización de Departamentos, distritos y municipios</div>
+              <div class="split-card-meta">www.contaduria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.contaduria.gov.co/entidades-sector-publico" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="directorio de entidades públicas - sistema chip">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Directorio de entidades públicas - SISTEMA CHIP</div>
+              <div class="split-card-meta">www.contaduria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://mgaweb.dnp.gov.co/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="metodología general ajustada - mga">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Metodología General Ajustada - MGA</div>
+              <div class="split-card-meta">mgaweb.dnp.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://colaboracion.dnp.gov.co/CDT/Inversiones%20y%20finanzas%20pblicas/MGA_WEB/Banco%20Preguntas%20Frecuentes.pdf" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="preguntas frecuentes mga - suifp">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Preguntas Frecuentes MGA - SUIFP</div>
+              <div class="split-card-meta">colaboracion.dnp.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="http://aulavirtual.contaduria.gov.co/login/index.php" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="aulavirtual cgn">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Aulavirtual CGN</div>
+              <div class="split-card-meta">aulavirtual.contaduria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.funcionpublica.gov.co/eva/admon/index.php" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="aula virtual función pública">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Aula virtual función pública</div>
+              <div class="split-card-meta">www.funcionpublica.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://diancolombia.info/codigos-ciiu/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="códigos ciiu de actividades económicas dian 2023">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Códigos CIIU de Actividades económicas Dian 2023</div>
+              <div class="split-card-meta">diancolombia.info</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="clasificador de bienes y servicios unspsc">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Clasificador de bienes y servicios UNSPSC</div>
+              <div class="split-card-meta">www.colombiacompra.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://sui.superservicios.gov.co/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="sistema de información de servicios públicos domiciliarios">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Sistema de información de Servicios Públicos Domiciliarios</div>
+              <div class="split-card-meta">sui.superservicios.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.pasivocol.gov.co/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="pasivocol">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Pasivocol</div>
+              <div class="split-card-meta">www.pasivocol.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://muisca.dian.gov.co/WebIdentidadLogin" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="trámites y servicios dian">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Trámites y servicios DIAN</div>
+              <div class="split-card-meta">muisca.dian.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://siaobserva.auditoria.gov.co/Login.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="sia observa">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">SIA observa</div>
+              <div class="split-card-meta">siaobserva.auditoria.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://ruesfront.rues.org.co/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="rues">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Rues</div>
+              <div class="split-card-meta">ruesfront.rues.org.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.minsalud.gov.co/proteccionsocial/Financiamiento/Paginas/sgp-salud-publica.aspx" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="giros salud publica">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Giros salud publica</div>
+              <div class="split-card-meta">www.minsalud.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.funcionpublica.gov.co/fdci/login/auth" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="aplicativo por la integridad pública">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Aplicativo por la Integridad Pública</div>
+              <div class="split-card-meta">www.funcionpublica.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.mineducacion.gov.co/portal/micrositios-institucionales/Subdireccion-de-Gestion-Financiera/Operaciones-Reciprocas" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="operaciones recíprocas">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Operaciones Recíprocas</div>
+              <div class="split-card-meta">www.mineducacion.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.adres.gov.co/entidades-territoriales/financiamiento/informe-financiacion" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="informe de financiación lma">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Informe de financiación LMA</div>
+              <div class="split-card-meta">www.adres.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://rentasterritoriales.adres.gov.co/reciprocas/operaciones-reciprocas/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="ura">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">URA</div>
+              <div class="split-card-meta">rentasterritoriales.adres.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://mintransporte.gov.co/publicaciones/11959/base-gravable-2025/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="base gravable 2025">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Base gravable 2025</div>
+              <div class="split-card-meta">mintransporte.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+          
+          
+          <a href="https://www.invias.gov.co/documentos/1681/estados-financieros-2026/" target="_blank" rel="noopener"
+             class="split-card"
+             data-title="estados financieros 2026 - invias">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">Estados financieros 2026 - INVIAS</div>
+              <div class="split-card-meta">www.invias.gov.co</div>
+            </div>
+          </a>
+        
+      
+        
+      
+
+      <div class="split-empty" id="emptyPortales">
+        <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <p>Sin resultados.</p>
+      </div>
     </div>
-</section>
 
-<section class="bg-emerald-50 py-16 dark:bg-slate-900">
-    <div class="container-page">
-        <div class="mb-8">
-            <p class="kicker">Archivos</p>
-            <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Matrices descargables</h2>
-            <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">Documentos de apoyo para consulta de entidades territoriales y régimen subsidiado.</p>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-                    
-                    
-                    
-                    
-
-
-
-
-
-<a href="/assets/files/2026/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO__JUN_2026 - ALC.xlsx" target="_self" rel="noopener" class="group flex min-h-28 flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md hover:shadow-emerald-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-900">
-    <span class="flex items-start gap-3">
-        <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl transition duration-200 group-hover:scale-110 bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white dark:bg-amber-950 dark:text-amber-300">
-            
-<svg class="size-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3h7l5 5v13H7V3Zm7 0v5h5M9 14h6M9 18h6M9 10h2"/></svg>
-
-        </span>
-        <span>
-            <span class="block text-sm font-semibold leading-6 text-slate-900 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">EXCEL: Matriz consulta entidades territorial 2026</span>
-            <span class="mt-1.5 block break-all text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Archivo descargable</span>
-        </span>
-    </span>
-</a>
-
-                
-            
-        </div>
+    
+    <div class="split-group-heading" id="headingArchivos">
+      Matrices descargables
+      <span class="split-group-count">1</span>
     </div>
-</section>
+
+    <div class="split-grid" id="gridArchivos">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="/assets/files/2026/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO__JUN_2026 - ALC.xlsx"
+             class="split-card is-file"
+             data-title="excel: matriz consulta entidades territorial 2026">
+            <div class="split-card-icon">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+  <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+</svg>
+</div>
+            <div class="split-card-body">
+              <div class="split-card-title">EXCEL: Matriz consulta entidades territorial 2026</div>
+              <div class="split-card-meta">Archivo descargable</div>
+            </div>
+          </a>
+        
+      
+    </div>
+    
+
+  </main>
+</div>
+
+<script>
+(function () {
+  const input      = document.getElementById('splitSearch');
+  const countEl    = document.getElementById('splitCount');
+  const cards      = document.querySelectorAll('a.split-card');
+  const emptyP     = document.getElementById('emptyPortales');
+  const gridA      = document.getElementById('gridArchivos');
+  const headingA   = document.getElementById('headingArchivos');
+  const countP     = document.getElementById('countPortales');
+
+  input.addEventListener('input', function () {
+    const q = this.value.toLowerCase().trim();
+    let total = 0, visP = 0, visA = 0;
+
+    cards.forEach(function (card) {
+      const match = !q || card.dataset.title.includes(q) ||
+                    card.querySelector('.split-card-meta').textContent.toLowerCase().includes(q);
+      card.classList.toggle('s-hidden', !match);
+      if (match) {
+        total++;
+        if (card.classList.contains('is-file')) visA++; else visP++;
+      }
+    });
+
+    countEl.textContent = q ? (total + ' resultado' + (total !== 1 ? 's' : '')) : '';
+    countEl.className = 's-count' + (q && total > 0 ? ' active' : '');
+
+    if (emptyP) emptyP.style.display = (!q || visP > 0) ? 'none' : 'block';
+    if (countP) countP.textContent = visP || q ? visP : countP.textContent;
+    if (gridA)    gridA.style.display    = visA > 0 || !q ? '' : 'none';
+    if (headingA) headingA.style.display = visA > 0 || !q ? '' : 'none';
+  });
+})();
+</script>
 
         </main>
 
@@ -1146,23 +1318,6 @@
 
 <footer>
     
-    <div class="section-brand">
-        <div class="container-page py-10">
-            <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-                <div>
-                    <h2 class="text-xl font-bold text-white">¿Listo para modernizar tu entidad?</h2>
-                    <p class="mt-1 text-sm text-emerald-100">Contáctanos y te orientamos sin compromiso.</p>
-                </div>
-                <a href="/contacto" class="btn-on-brand shrink-0">
-                    Hablar con el equipo
-                    
-<svg class="h-4 w-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-
-                </a>
-            </div>
-        </div>
-    </div>
-
     
     <div class="bg-emerald-900">
         <div class="container-page w-full py-12 lg:py-14">
