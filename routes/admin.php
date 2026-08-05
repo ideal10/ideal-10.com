@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ComponenteController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EntityController;
 use App\Http\Controllers\Admin\InterestLinkController;
 use App\Http\Controllers\Admin\NavItemController;
@@ -10,9 +11,7 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return redirect()->route('admin.nav-items.index');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('site-settings', [SiteSettingController::class, 'edit'])->name('site-settings.edit');
     Route::put('site-settings', [SiteSettingController::class, 'update'])->name('site-settings.update');

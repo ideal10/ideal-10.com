@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editar enlace de navegación</h2>
+        <x-admin.page-header title="Editar enlace de navegación" />
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white p-6 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.nav-items.update', $navItem) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @include('admin.nav-items._form')
+    <div class="mx-auto max-w-3xl">
+        <x-admin.back-link :href="route('admin.nav-items.index')" />
 
-                    <div class="mt-6 flex justify-end">
-                        <x-primary-button>Actualizar</x-primary-button>
-                    </div>
-                </form>
-            </div>
+        <div class="card">
+            <form action="{{ route('admin.nav-items.update', $navItem) }}" method="POST">
+                @csrf
+                @method('PUT')
+                @include('admin.nav-items._form')
+
+                <div class="mt-6 flex justify-end">
+                    <x-primary-button>Actualizar</x-primary-button>
+                </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

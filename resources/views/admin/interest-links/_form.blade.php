@@ -10,7 +10,7 @@
 
     <div>
         <x-input-label for="description" value="Descripción (opcional)" />
-        <textarea id="description" name="description" rows="2" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('description', $link?->description) }}</textarea>
+        <x-textarea id="description" name="description" rows="2" class="mt-1 block w-full">{{ old('description', $link?->description) }}</x-textarea>
         <x-input-error :messages="$errors->get('description')" class="mt-2" />
     </div>
 
@@ -18,12 +18,12 @@
         <x-input-label value="Tipo de enlace" />
         <div class="mt-1 flex gap-6">
             <label class="inline-flex items-center gap-2">
-                <input type="radio" name="link_type" value="external" data-link-type-toggle {{ old('link_type', $isFile ? 'file' : 'external') === 'external' ? 'checked' : '' }}>
-                <span class="text-sm text-gray-700">Enlace externo</span>
+                <input type="radio" name="link_type" value="external" data-link-type-toggle class="border-slate-300 text-emerald-600 focus:ring-emerald-500" {{ old('link_type', $isFile ? 'file' : 'external') === 'external' ? 'checked' : '' }}>
+                <span class="text-sm text-slate-700">Enlace externo</span>
             </label>
             <label class="inline-flex items-center gap-2">
-                <input type="radio" name="link_type" value="file" data-link-type-toggle {{ old('link_type', $isFile ? 'file' : 'external') === 'file' ? 'checked' : '' }}>
-                <span class="text-sm text-gray-700">Archivo descargable</span>
+                <input type="radio" name="link_type" value="file" data-link-type-toggle class="border-slate-300 text-emerald-600 focus:ring-emerald-500" {{ old('link_type', $isFile ? 'file' : 'external') === 'file' ? 'checked' : '' }}>
+                <span class="text-sm text-slate-700">Archivo descargable</span>
             </label>
         </div>
         <x-input-error :messages="$errors->get('link_type')" class="mt-2" />
@@ -39,7 +39,7 @@
         <x-input-label for="file" value="Archivo (xlsx, xls, csv, pdf, doc, docx — máx 10MB)" />
         <input id="file" name="file" type="file" class="mt-1 block w-full text-sm">
         @if ($isFile)
-            <p class="mt-1 text-sm text-gray-500">Archivo actual: <a href="{{ $link->url }}" class="text-indigo-600 hover:underline">{{ basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
+            <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ $link->url }}" class="text-emerald-700 hover:underline">{{ basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
         @endif
         <x-input-error :messages="$errors->get('file')" class="mt-2" />
     </div>
@@ -57,8 +57,8 @@
     </div>
 
     <div class="flex items-center">
-        <input id="active" name="active" type="checkbox" value="1" class="rounded border-gray-300 text-indigo-600 shadow-sm" {{ old('active', $link?->active ?? true) ? 'checked' : '' }}>
-        <label for="active" class="ms-2 text-sm text-gray-600">Activo (visible en el sitio público)</label>
+        <x-checkbox id="active" name="active" value="1" :checked="old('active', $link?->active ?? true)" />
+        <label for="active" class="ms-2 text-sm text-slate-600">Activo (visible en el sitio público)</label>
     </div>
 </div>
 
