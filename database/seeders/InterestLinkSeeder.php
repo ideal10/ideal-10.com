@@ -1,0 +1,59 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\InterestLink;
+use Illuminate\Database\Seeder;
+
+class InterestLinkSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $links = [
+            ['title' => 'Sistema de Presupuesto y Giro de Regalías - SPGR', 'url' => 'https://www.minhacienda.gov.co/sgr/spgr'],
+            ['title' => 'Recursos de inspección vigilancia y control', 'url' => 'https://www.adres.gov.co/entidades-territoriales/reconocimiento-de-upc/recursos-ivc'],
+            ['title' => 'Conciliación de Operaciones Reciprocas - Superintendencia Nacional de Salud', 'url' => 'https://www.supersalud.gov.co/es-co/Paginas/Informaci%C3%B3n%20Financiera/control-financiero-de-cuentas.aspx'],
+            ['title' => 'Portal SPGR', 'url' => 'https://portal.sgr.gov.co/dana-na/auth/url_VYPzsxQ2XAqyYGlL/welcome.cgi'],
+            ['title' => 'Estado de cuenta entidades territoriales ADRES', 'url' => 'https://www.adres.gov.co/VUD/Paginas/estados-de-cuenta.aspx'],
+            ['title' => 'ADRES Regimen subsidiado resumen LMA', 'url' => 'https://www.adres.gov.co/eps/regimen-subsidiado/resumen-lma'],
+            ['title' => 'Reciprocas regalías', 'url' => 'https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/contables-regalias'],
+            ['title' => 'Reciprocas MinHacienda', 'url' => 'https://www.minhacienda.gov.co/es/transparencia/planeacion-presupuesto-informes-contables/informacion-contable/estados'],
+            ['title' => 'Sicodis Reportes SGP » Ficha SGP - Presupuestal', 'url' => 'https://sicodis.dnp.gov.co/ReportesSGP/FichaSGP_Entidad.aspx'],
+            ['title' => 'Consultas Particulares de Entidades Territoriales', 'url' => 'https://www.minhacienda.gov.co/seguridad-social-dress/fonpet/consultas-particulares-de-entidades-territoriales'],
+            ['title' => 'Documentos de Distribución de los Recursos del Sistema General de Participaciones', 'url' => 'https://www.dnp.gov.co/LaEntidad_/subdireccion-general-inversiones-seguimiento-evaluacion/direccion-programacion-inversiones-publicas/Paginas/sistema-general-de-participaciones.aspx'],
+            ['title' => 'Tasas de interes bancario corriente - usura', 'url' => 'https://www.superfinanciera.gov.co/publicaciones/10829/sala-de-prensacomunicados-de-prensa-interes-bancario-corriente-10829/'],
+            ['title' => 'RCP en convergencia con NIIF - NICSP', 'url' => 'https://www.contaduria.gov.co/rcp-en-convergencia-con-niif-nicsp'],
+            ['title' => 'CHIP- Consolidador de hacienda e información pública', 'url' => 'https://www.chip.gov.co/schip_rt/index.jsf'],
+            ['title' => 'GESPROY Sistema de Seguimiento, Evaluación y Control', 'url' => 'https://ocilbprd.dnp.gov.co:14100/ssodr/oam/sgr/autenticacion.jsp'],
+            ['title' => 'SIA Sistema integral de auditoria', 'url' => 'https://siacontralorias.auditoria.gov.co/'],
+            ['title' => 'Informe Consolidado de Evaluación de Control Interno Contable', 'url' => 'https://www.contaduria.gov.co/informe-consolidado-de-control-interno-contable'],
+            ['title' => 'Categorización de Departamentos, distritos y municipios', 'url' => 'https://www.contaduria.gov.co/categorizacion-de-departamentos-distritos-y-municipios'],
+            ['title' => 'Directorio de entidades públicas - SISTEMA CHIP', 'url' => 'https://www.contaduria.gov.co/entidades-sector-publico'],
+            ['title' => 'Metodología General Ajustada - MGA', 'url' => 'https://mgaweb.dnp.gov.co/'],
+            ['title' => 'Preguntas Frecuentes MGA - SUIFP', 'url' => 'https://colaboracion.dnp.gov.co/CDT/Inversiones%20y%20finanzas%20pblicas/MGA_WEB/Banco%20Preguntas%20Frecuentes.pdf'],
+            ['title' => 'Aulavirtual CGN', 'url' => 'http://aulavirtual.contaduria.gov.co/login/index.php'],
+            ['title' => 'Aula virtual función pública', 'url' => 'https://www.funcionpublica.gov.co/eva/admon/index.php'],
+            ['title' => 'Códigos CIIU de Actividades económicas Dian 2023', 'url' => 'https://diancolombia.info/codigos-ciiu/'],
+            ['title' => 'Clasificador de bienes y servicios UNSPSC', 'url' => 'https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios'],
+            ['title' => 'Sistema de información de Servicios Públicos Domiciliarios', 'url' => 'https://sui.superservicios.gov.co/'],
+            ['title' => 'Pasivocol', 'url' => 'https://www.pasivocol.gov.co/'],
+            ['title' => 'Trámites y servicios DIAN', 'url' => 'https://muisca.dian.gov.co/WebIdentidadLogin'],
+            ['title' => 'SIA observa', 'url' => 'https://siaobserva.auditoria.gov.co/Login.aspx'],
+            ['title' => 'Rues', 'url' => 'https://ruesfront.rues.org.co/'],
+            ['title' => 'Giros salud publica', 'url' => 'https://www.minsalud.gov.co/proteccionsocial/Financiamiento/Paginas/sgp-salud-publica.aspx'],
+            ['title' => 'Aplicativo por la Integridad Pública', 'url' => 'https://www.funcionpublica.gov.co/fdci/login/auth'],
+            ['title' => 'Operaciones Recíprocas', 'url' => 'https://www.mineducacion.gov.co/portal/micrositios-institucionales/Subdireccion-de-Gestion-Financiera/Operaciones-Reciprocas'],
+            ['title' => 'Recíprocas ADRES', 'url' => 'https://www.adres.gov.co/nuestra-entidad/informacion-financiera/unidad-gestion-general-ugg/operaciones%20recprocas/forms/allitems.aspx'],
+            ['title' => 'Base gravable 2025', 'url' => 'https://mintransporte.gov.co/publicaciones/11959/base-gravable-2025/'],
+            ['title' => 'Estados financieros 2026 - INVIAS', 'url' => 'https://www.invias.gov.co/documentos/1681/estados-financieros-2026/'],
+            ['title' => 'EXCEL: Matriz consulta entidades territorial 2026', 'url' => '/assets/files/2026/MATRIZ CONSULTA ENTIDADES TERRITORIAL SGSS_R_SUBSIDIADO__JUN_2026 - ALC.xlsx'],
+        ];
+
+        foreach ($links as $order => $link) {
+            InterestLink::query()->updateOrCreate(
+                ['title' => $link['title']],
+                ['url' => $link['url'], 'order' => $order + 1, 'active' => true]
+            );
+        }
+    }
+}
