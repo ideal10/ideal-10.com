@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SiteSettingSeeder::class,
             NavItemSeeder::class,
             ServiceSeeder::class,
+            ClientSeeder::class,
         ]);
     }
 }
