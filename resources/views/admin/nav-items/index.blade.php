@@ -15,7 +15,7 @@
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($navItems as $item)
-                    <tr class="hover:bg-emerald-50/40">
+                    <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.nav-items.edit', $item) }}">
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $item->order }}</td>
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $item->label }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $item->url }}</td>

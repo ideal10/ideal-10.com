@@ -16,7 +16,7 @@
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($clients as $client)
-                    <tr class="hover:bg-emerald-50/40">
+                    <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.clients.edit', $client) }}">
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $client->order }}</td>
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $client->name }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $client->img }}</td>

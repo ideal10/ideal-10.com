@@ -15,7 +15,7 @@
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($componentes as $componente)
-                    <tr class="hover:bg-emerald-50/40">
+                    <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.componentes.edit', $componente) }}">
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $componente->order }}</td>
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $componente->name }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">/componentes/{{ $componente->slug }}</td>

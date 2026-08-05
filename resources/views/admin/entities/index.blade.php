@@ -15,7 +15,7 @@
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($entities as $entity)
-                    <tr class="hover:bg-emerald-50/40">
+                    <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.entities.edit', $entity) }}">
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $entity->name }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">/menu_entidades/{{ $entity->slug }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $entity->links_count }}</td>
