@@ -1,25 +1,21 @@
 {
+    "$schema": "https://www.schemastore.org/package.json",
     "name": "ideal-10",
-    "version": "1.0.0",
-    "description": "Ideal 10 — Eleventy + Tailwind v4 static site",
     "private": true,
+    "type": "module",
     "scripts": {
-        "build": "npm-run-all --serial build:css build:html",
-        "build:css": "tailwindcss -i assets/css/main.css -o _site/assets/css/main.css --minify",
-        "build:html": "eleventy",
-        "serve": "npm-run-all --serial dev:css:warmup dev:parallel",
-        "dev:css:warmup": "tailwindcss -i assets/css/main.css -o _site/assets/css/main.css",
-        "dev:parallel": "npm-run-all --parallel dev:css dev:html",
-        "dev:css": "tailwindcss -i assets/css/main.css -o _site/assets/css/main.css --watch",
-        "dev:html": "eleventy --serve",
-        "clean": "rm -rf _site"
+        "build": "vite build",
+        "dev": "vite"
     },
     "devDependencies": {
-        "@11ty/eleventy": "^3.0.0",
-        "@tailwindcss/cli": "^4.0.0",
         "@tailwindcss/typography": "^0.5.15",
-        "npm-run-all": "^4.1.5",
-        "tailwindcss": "^4.0.0"
+        "@tailwindcss/vite": "^4.0.0",
+        "alpinejs": "^3.4.2",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^2.0.0",
+        "tailwindcss": "^4.0.0",
+        "vite": "^7.0.7"
     },
     "dependencies": {
         "flowbite": "^2.5.2"
