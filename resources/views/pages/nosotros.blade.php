@@ -1,0 +1,167 @@
+@extends('layouts.app')
+
+@section('title', '¿Quiénes somos?')
+
+@section('content')
+{{-- INTRO ----------------------------------------------------------------- --}}
+<section class="section-hero">
+    <div class="container-page">
+        <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+            <div>
+                <p class="kicker">Ideal S.A.S</p>
+                <h1 class="heading-page">Tecnología y soporte para modernizar la gestión pública.</h1>
+                <p class="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">Somos una empresa dedicada a diseñar, construir y acompañar soluciones digitales integrales para entidades y organizaciones que necesitan información confiable, procesos claros y soporte oportuno.</p>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2" data-reveal-stagger>
+                @foreach ([
+                    ['label' => 'Misión', 'body' => 'Diseñar, desarrollar y comercializar herramientas informáticas administrativas que cumplan requisitos de clientes y partes interesadas, con eficiencia, confiabilidad y cumplimiento normativo.'],
+                    ['label' => 'Visión', 'body' => 'Consolidar una operación sostenible y reconocida por servicios de diseño, desarrollo y soporte de software para la región de los Llanos.'],
+                ] as $block)
+                <div class="card-soft border-l-4 border-emerald-500">
+                    <p class="text-sm font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">{{ $block['label'] }}</p>
+                    <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{{ $block['body'] }}</p>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- PROCESS MAP ----------------------------------------------------------- --}}
+<section class="section-alt">
+    <div class="container-page">
+        <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker">Cómo trabajamos</p>
+            <h2 class="heading-section">Mapa de procesos.</h2>
+            <p class="lead">Articulamos procesos estratégicos, misionales, de apoyo y de evaluación para transformar las necesidades de nuestros clientes y partes interesadas en soluciones que generan valor.</p>
+        </div>
+
+        <div class="mt-14 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-8 lg:p-10">
+            <div class="grid gap-5 lg:grid-cols-[88px_1fr_88px] lg:items-stretch">
+
+                {{-- Input band — top on mobile, left rail on desktop --}}
+                <div class="flex items-center justify-between gap-4 rounded-2xl bg-linear-to-r from-emerald-700 to-emerald-600 px-5 py-4 text-white shadow-md shadow-emerald-700/20 lg:flex-col lg:gap-6 lg:bg-linear-to-b lg:py-6">
+                    <span class="text-[10.5px] font-extrabold uppercase tracking-[2px] opacity-80">Entrada</span>
+                    <span class="flex-1 text-center text-[11.5px] font-bold uppercase leading-snug tracking-[1.5px] lg:flex-none lg:[writing-mode:vertical-rl] lg:rotate-180">Necesidades y expectativas de los clientes y partes interesadas</span>
+                    <svg class="h-6 w-6 shrink-0 rotate-90 lg:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+
+                {{-- Process stack --}}
+                <div class="flex flex-col gap-6">
+
+                    {{-- Estratégicos --}}
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-center">
+                            <div class="min-w-70 bg-linear-to-r from-emerald-700 to-emerald-500 px-12 pt-3 pb-5 text-center text-xs font-extrabold uppercase tracking-[2px] text-white shadow-md shadow-emerald-700/20 [clip-path:polygon(0%_0%,100%_0%,100%_60%,50%_100%,0%_60%)] sm:text-sm">
+                                Procesos Estratégicos
+                            </div>
+                        </div>
+                        <div class="grid gap-3 sm:grid-cols-2">
+                            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-emerald-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-emerald-500 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white dark:bg-emerald-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Direccionamiento Estratégico</span>
+                            </div>
+                            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-emerald-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-emerald-500 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white dark:bg-emerald-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Mejora Continua y Gestión de Calidad</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Misionales --}}
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-center">
+                            <div class="min-w-70 bg-linear-to-r from-teal-700 to-teal-500 px-12 py-5 text-center text-xs font-extrabold uppercase tracking-[2px] text-white shadow-md shadow-teal-700/20 [clip-path:polygon(50%_0%,100%_22%,100%_78%,50%_100%,0%_78%,0%_22%)] sm:text-sm">
+                                Procesos Misionales
+                            </div>
+                        </div>
+                        <div class="grid gap-3 sm:grid-cols-3">
+                            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-teal-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-teal-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white dark:bg-teal-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7-3-3Z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Diseño y Desarrollo</span>
+                            </div>
+                            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-teal-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-teal-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white dark:bg-teal-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Gestión de Mercadeo</span>
+                            </div>
+                            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-teal-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-teal-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white dark:bg-teal-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Gestión de Consultoría</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Apoyo --}}
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-center">
+                            <div class="min-w-70 bg-linear-to-r from-sky-700 to-sky-500 px-12 py-5 text-center text-xs font-extrabold uppercase tracking-[2px] text-white shadow-md shadow-sky-700/20 [clip-path:polygon(50%_0%,100%_22%,100%_78%,50%_100%,0%_78%,0%_22%)] sm:text-sm">
+                                Procesos de Apoyo
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                            <div class="flex flex-col items-center gap-2.5 rounded-xl border border-slate-200 border-t-4 border-t-sky-600 bg-white px-3 py-4 text-center shadow-sm dark:border-slate-800 dark:border-t-sky-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-white dark:bg-sky-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 0 0-2.8-1.5c-1.5 0-2.5.8-2.5 2 0 2.8 5.5 1.2 5.5 4 0 1.2-1 2-2.5 2A3 3 0 0 1 9 16M12 6v1.5M12 16.5V18"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Gestión Financiera</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2.5 rounded-xl border border-slate-200 border-t-4 border-t-sky-600 bg-white px-3 py-4 text-center shadow-sm dark:border-slate-800 dark:border-t-sky-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-white dark:bg-sky-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Investigación y Proyectos</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2.5 rounded-xl border border-slate-200 border-t-4 border-t-sky-600 bg-white px-3 py-4 text-center shadow-sm dark:border-slate-800 dark:border-t-sky-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-white dark:bg-sky-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Recursos Humanos</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2.5 rounded-xl border border-slate-200 border-t-4 border-t-sky-600 bg-white px-3 py-4 text-center shadow-sm dark:border-slate-800 dark:border-t-sky-400 dark:bg-slate-900">
+                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-600 text-white dark:bg-sky-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+                                <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Tecnología de la Información</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Evaluación --}}
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-center">
+                            <div class="min-w-70 bg-linear-to-r from-indigo-700 to-indigo-500 px-12 pt-5 pb-3 text-center text-xs font-extrabold uppercase tracking-[2px] text-white shadow-md shadow-indigo-700/20 [clip-path:polygon(50%_0%,100%_40%,100%_100%,0%_100%,0%_40%)] sm:text-sm">
+                                Procesos de Evaluación
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 border-l-4 border-l-indigo-600 bg-white p-4 shadow-sm dark:border-slate-800 dark:border-l-indigo-400 dark:bg-slate-900">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-indigo-600 text-white dark:bg-indigo-500"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+                            <span class="text-sm font-bold leading-snug text-slate-900 dark:text-white">Proceso de Evaluación, Control y Seguimiento</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                {{-- Output band — bottom on mobile, right rail on desktop --}}
+                <div class="flex items-center justify-between gap-4 rounded-2xl bg-linear-to-r from-indigo-600 to-indigo-800 px-5 py-4 text-white shadow-md shadow-indigo-700/20 lg:flex-col-reverse lg:gap-6 lg:bg-linear-to-b lg:py-6">
+                    <span class="text-[10.5px] font-extrabold uppercase tracking-[2px] opacity-80">Salida</span>
+                    <span class="flex-1 text-center text-[11.5px] font-bold uppercase leading-snug tracking-[1.5px] lg:flex-none lg:[writing-mode:vertical-rl]">Satisfacción de los clientes y partes interesadas</span>
+                    <svg class="h-6 w-6 shrink-0 rotate-90 lg:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- CLIENTS TICKER -------------------------------------------------------- --}}
+<section class="section">
+    <div class="container-page">
+        <div class="mb-10 max-w-2xl">
+            <p class="kicker">Clientes</p>
+            <h2 class="heading-section">Experiencia con entidades territoriales.</h2>
+        </div>
+    </div>
+    <div class="clients-ticker" data-clients-ticker>
+        <ul class="clients-track" data-clients-ticker-track>
+            @foreach ($tickerClients as $client)
+                <li class="flex w-32 shrink-0 flex-col items-center gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                    <img class="h-12 w-12 object-contain" src="/assets/img/clients/{{ $client->img }}" width="48" height="48" alt="{{ $client->name }}">
+                    <span class="text-center text-[0.6rem] font-bold uppercase leading-tight tracking-wide text-slate-500 dark:text-slate-400">{{ $client->name }}</span>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</section>
+@endsection
