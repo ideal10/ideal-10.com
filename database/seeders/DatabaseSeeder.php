@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SiteSettingSeeder::class,
             NavItemSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }
