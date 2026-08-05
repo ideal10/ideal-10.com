@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-admin.page-header title="Entidades (menú)" action-label="Nueva entidad" :action-route="route('admin.entities.create')" />
+        <x-admin.page-header title="Entidades (menú)" />
     </x-slot>
+
+    <x-admin.create-link :href="route('admin.entities.create')" label="Nueva entidad" />
 
     <div class="card overflow-hidden p-0">
         <table class="min-w-full divide-y divide-slate-100">

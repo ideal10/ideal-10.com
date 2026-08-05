@@ -10,8 +10,10 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <x-admin.page-header title="Enlaces de interés" action-label="Nuevo enlace" :action-route="route('admin.interest-links.create')" />
+        <x-admin.page-header title="Enlaces de interés" />
     </x-slot>
+
+    <x-admin.create-link :href="route('admin.interest-links.create')" label="Nuevo enlace" />
 
     <div class="card overflow-hidden p-0">
         <table class="min-w-full divide-y divide-slate-100">

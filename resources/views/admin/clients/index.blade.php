@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-admin.page-header title="Clientes" action-label="Nuevo cliente" :action-route="route('admin.clients.create')" />
+        <x-admin.page-header title="Clientes" />
     </x-slot>
+
+    <x-admin.create-link :href="route('admin.clients.create')" label="Nuevo cliente" />
 
     <div class="card overflow-hidden p-0">
         <table class="min-w-full divide-y divide-slate-100">

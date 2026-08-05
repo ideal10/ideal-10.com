@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-admin.page-header title="Elementos de menú" action-label="Nuevo enlace" :action-route="route('admin.nav-items.create')" />
+        <x-admin.page-header title="Elementos de menú" />
     </x-slot>
+
+    <x-admin.create-link :href="route('admin.nav-items.create')" label="Nuevo enlace" />
 
     <div class="card overflow-hidden p-0">
         <table class="min-w-full divide-y divide-slate-100">
