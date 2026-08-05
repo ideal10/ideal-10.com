@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ComponenteController;
 use App\Http\Controllers\Admin\EntityController;
+use App\Http\Controllers\Admin\InterestLinkController;
 use App\Http\Controllers\Admin\NavItemController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SiteSettingController;
@@ -21,4 +22,8 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::resource('clients', ClientController::class)->except(['show']);
     Route::resource('entities', EntityController::class)->except(['show']);
     Route::resource('componentes', ComponenteController::class)->except(['show']);
+
+    Route::resource('interest-links', InterestLinkController::class)->except(['show']);
+    Route::patch('interest-links/{interest_link}/toggle', [InterestLinkController::class, 'toggle'])->name('interest-links.toggle');
+    Route::post('interest-links/reorder', [InterestLinkController::class, 'reorder'])->name('interest-links.reorder');
 });

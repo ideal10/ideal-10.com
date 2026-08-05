@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             EntitySeeder::class,
             ComponenteSeeder::class,
+            InterestLinkSeeder::class,
         ]);
     }
 }

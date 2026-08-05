@@ -5,4 +5,5 @@
     <a href="{{ route('admin.clients.index') }}" class="{{ request()->routeIs('admin.clients.*') ? 'font-semibold text-gray-900' : 'text-gray-500 hover:text-gray-800' }}">Clientes</a>
     <a href="{{ route('admin.entities.index') }}" class="{{ request()->routeIs('admin.entities.*') ? 'font-semibold text-gray-900' : 'text-gray-500 hover:text-gray-800' }}">Entidades</a>
     <a href="{{ route('admin.componentes.index') }}" class="{{ request()->routeIs('admin.componentes.*') ? 'font-semibold text-gray-900' : 'text-gray-500 hover:text-gray-800' }}">Componentes</a>
+    <a href="{{ route('admin.interest-links.index') }}" class="{{ request()->routeIs('admin.interest-links.*') ? 'font-semibold text-gray-900' : 'text-gray-500 hover:text-gray-800' }}">Enlaces de interés</a>
 </div>
