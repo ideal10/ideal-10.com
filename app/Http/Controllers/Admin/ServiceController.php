@@ -20,7 +20,9 @@ class ServiceController extends Controller
 
     public function create(): View
     {
-        return view('admin.services.create');
+        return view('admin.services.create', [
+            'nextOrder' => Service::count() + 1,
+        ]);
     }
 
     public function store(StoreServiceRequest $request): RedirectResponse
