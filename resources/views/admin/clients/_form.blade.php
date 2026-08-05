@@ -14,8 +14,8 @@
     </div>
 
     <div class="flex items-center">
-        <input id="extra" name="extra" type="checkbox" value="1" class="rounded border-gray-300 text-indigo-600 shadow-sm" {{ old('extra', $client?->extra) ? 'checked' : '' }}>
-        <label for="extra" class="ms-2 text-sm text-gray-600">Solo mostrar en el carrusel de "Nosotros" (no en la grilla del home)</label>
+        <x-checkbox id="extra" name="extra" value="1" :checked="old('extra', $client?->extra)" />
+        <label for="extra" class="ms-2 text-sm text-slate-600">Solo mostrar en el carrusel de "Nosotros" (no en la grilla del home)</label>
     </div>
 
     <div>
