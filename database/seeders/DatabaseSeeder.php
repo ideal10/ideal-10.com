@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             NavItemSeeder::class,
             ServiceSeeder::class,
             ClientSeeder::class,
+            EntitySeeder::class,
         ]);
     }
 }
