@@ -30,3 +30,6 @@ node_modules
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+**/caddy
+frankenphp
