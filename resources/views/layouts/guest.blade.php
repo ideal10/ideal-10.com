@@ -18,7 +18,9 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    {{-- Background is set via inline style (not a Tailwind bg-[url(...)] utility) so Vite's
+                        CSS pipeline never fingerprints this path — it must stay exactly /assets/img/*. --}}
+                    <div class="h-16 w-[160px] bg-contain bg-no-repeat bg-left" style="background-image:url('/assets/img/big_logo_green.png')"></div>
                 </a>
             </div>
 
