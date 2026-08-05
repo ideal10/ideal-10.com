@@ -26,7 +26,7 @@
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($links as $i => $link)
-                    <tr class="hover:bg-emerald-50/40">
+                    <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.interest-links.edit', $link) }}">
                         <td class="px-6 py-4 text-sm text-slate-500">
                             <div class="flex items-center gap-1">
                                 {{ $link->order }}
