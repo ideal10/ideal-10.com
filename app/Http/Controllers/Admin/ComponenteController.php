@@ -20,7 +20,9 @@ class ComponenteController extends Controller
 
     public function create(): View
     {
-        return view('admin.componentes.create');
+        return view('admin.componentes.create', [
+            'nextOrder' => Componente::count() + 1,
+        ]);
     }
 
     public function store(StoreComponenteRequest $request): RedirectResponse

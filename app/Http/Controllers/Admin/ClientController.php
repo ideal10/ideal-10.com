@@ -20,7 +20,9 @@ class ClientController extends Controller
 
     public function create(): View
     {
-        return view('admin.clients.create');
+        return view('admin.clients.create', [
+            'nextOrder' => Client::count() + 1,
+        ]);
     }
 
     public function store(StoreClientRequest $request): RedirectResponse

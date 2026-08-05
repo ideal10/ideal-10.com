@@ -23,7 +23,9 @@ class InterestLinkController extends Controller
 
     public function create(): View
     {
-        return view('admin.interest-links.create');
+        return view('admin.interest-links.create', [
+            'nextOrder' => InterestLink::count() + 1,
+        ]);
     }
 
     public function store(StoreInterestLinkRequest $request): RedirectResponse

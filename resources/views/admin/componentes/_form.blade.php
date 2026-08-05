@@ -38,7 +38,7 @@
 
     <div>
         <x-input-label for="order" value="Orden" />
-        <x-text-input id="order" name="order" type="number" class="mt-1 block w-full" :value="old('order', $componente?->order ?? 0)" />
+        <x-text-input id="order" name="order" type="number" class="mt-1 block w-full" :value="old('order', $componente?->order ?? $nextOrder ?? 0)" />
         <x-input-error :messages="$errors->get('order')" class="mt-2" />
     </div>
 </div>

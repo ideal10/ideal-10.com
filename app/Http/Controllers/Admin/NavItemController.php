@@ -20,7 +20,9 @@ class NavItemController extends Controller
 
     public function create(): View
     {
-        return view('admin.nav-items.create');
+        return view('admin.nav-items.create', [
+            'nextOrder' => NavItem::count() + 1,
+        ]);
     }
 
     public function store(StoreNavItemRequest $request): RedirectResponse
