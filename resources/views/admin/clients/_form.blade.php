@@ -8,9 +8,15 @@
     </div>
 
     <div>
-        <x-input-label for="img" value="Archivo de imagen (en assets/img/clients/, ej. cubarral.png)" />
-        <x-text-input id="img" name="img" type="text" class="mt-1 block w-full" :value="old('img', $client?->img)" required />
-        <x-input-error :messages="$errors->get('img')" class="mt-2" />
+        <x-input-label for="image" value="Logo del cliente (jpg, jpeg, png, webp, svg — máx 5MB)" />
+        <input id="image" name="image" type="file" accept="image/*" class="mt-1 block w-full text-sm">
+        @if ($client?->img)
+            <p class="mt-1 flex items-center gap-2 text-sm text-slate-500">
+                <img src="{{ $client->img }}" alt="{{ $client->name }}" class="h-10 w-10 rounded border border-slate-200 object-contain">
+                Imagen actual. Sube una nueva solo si quieres reemplazarla.
+            </p>
+        @endif
+        <x-input-error :messages="$errors->get('image')" class="mt-2" />
     </div>
 
     <div class="flex items-center">

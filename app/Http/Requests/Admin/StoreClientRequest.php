@@ -15,7 +15,7 @@ class StoreClientRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'img' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:5120'],
             'extra' => ['boolean'],
             'order' => ['nullable', 'integer', 'min:0'],
         ];

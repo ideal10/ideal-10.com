@@ -7,7 +7,7 @@
         <x-admin.back-link :href="route('admin.clients.index')" />
 
         <div class="card">
-            <form action="{{ route('admin.clients.store') }}" method="POST">
+            <form action="{{ route('admin.clients.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include('admin.clients._form')
 
