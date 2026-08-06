@@ -39,7 +39,7 @@
         <x-input-label for="file" value="Archivo (xlsx, xls, csv, pdf, doc, docx — máx 10MB)" />
         <input id="file" name="file" type="file" class="field-file mt-1">
         @if ($isFile)
-            <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ $link->url }}" class="text-emerald-700 hover:underline">{{ basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
+            <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ $link->url }}" class="text-emerald-700 hover:underline">{{ $link->original_name ?? basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
         @endif
         <x-input-error :messages="$errors->get('file')" class="mt-2" />
     </div>

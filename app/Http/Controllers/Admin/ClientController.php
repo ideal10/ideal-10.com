@@ -33,6 +33,7 @@ class ClientController extends Controller
         $data['extra'] = $data['extra'] ?? false;
         $data['order'] ??= 0;
         $data['img'] = Storage::url($request->file('image')->store('clients', 'public'));
+        $data['original_name'] = $request->file('image')->getClientOriginalName();
 
         Client::create($data);
 
@@ -53,6 +54,7 @@ class ClientController extends Controller
         if ($request->hasFile('image')) {
             $this->deleteStoredFile($client->img);
             $data['img'] = Storage::url($request->file('image')->store('clients', 'public'));
+            $data['original_name'] = $request->file('image')->getClientOriginalName();
         }
 
         $client->update($data);
