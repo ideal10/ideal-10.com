@@ -193,6 +193,11 @@
         @apply block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:focus:ring-emerald-800;
     }
 
+    /** Styled file picker: native `<input type="file">` dressed up to match `.field-input`. */
+    .field-file {
+        @apply block w-full cursor-pointer rounded-xl border border-slate-200 bg-white pr-4 text-sm text-slate-500 transition file:mr-4 file:cursor-pointer file:rounded-l-[11px] file:border-0 file:bg-emerald-50 file:px-4 file:py-3 file:text-sm file:font-semibold file:text-emerald-700 hover:file:bg-emerald-100 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-400 dark:file:bg-emerald-950/50 dark:file:text-emerald-300 dark:hover:file:bg-emerald-950 dark:focus:ring-emerald-800;
+    }
+
     /* Navbar -------------------------------------------------------------- */
 
     /** Inactive top-nav link. */

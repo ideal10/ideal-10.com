@@ -9,7 +9,7 @@
 
     <div>
         <x-input-label for="image" value="Logo del cliente (jpg, jpeg, png, webp, svg — máx 5MB)" />
-        <input id="image" name="image" type="file" accept="image/*" class="mt-1 block w-full text-sm">
+        <input id="image" name="image" type="file" accept="image/*" class="field-file mt-1">
         @if ($client?->img)
             <p class="mt-1 flex items-center gap-2 text-sm text-slate-500">
                 <img src="{{ $client->img }}" alt="{{ $client->name }}" class="h-10 w-10 rounded border border-slate-200 object-contain">
