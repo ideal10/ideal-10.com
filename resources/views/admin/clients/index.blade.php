@@ -21,7 +21,7 @@
                     <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.clients.edit', $client) }}">
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $client->order }}</td>
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $client->name }}</td>
-                        <td class="px-6 py-4 text-sm text-slate-500">{{ $client->img }}</td>
+                        <td class="px-6 py-4"><img src="{{ $client->img }}" alt="{{ $client->name }}" class="h-8 w-8 rounded border border-slate-200 object-contain"></td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $client->extra ? 'Sí' : 'No' }}</td>
                         <td class="px-6 py-4 text-right text-sm">
                             <a href="{{ route('admin.clients.edit', $client) }}" class="btn-icon-edit" title="Editar">

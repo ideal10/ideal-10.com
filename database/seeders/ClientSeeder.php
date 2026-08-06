@@ -33,14 +33,14 @@ class ClientSeeder extends Seeder
         foreach ($clients as $client) {
             Client::query()->updateOrCreate(
                 ['name' => $client['name']],
-                ['img' => $client['img'], 'extra' => false, 'order' => $order++]
+                ['img' => '/storage/clients/'.$client['img'], 'extra' => false, 'order' => $order++]
             );
         }
 
         foreach ($extraClients as $client) {
             Client::query()->updateOrCreate(
                 ['name' => $client['name']],
-                ['img' => $client['img'], 'extra' => true, 'order' => $order++]
+                ['img' => '/storage/clients/'.$client['img'], 'extra' => true, 'order' => $order++]
             );
         }
     }

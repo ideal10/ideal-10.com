@@ -157,7 +157,7 @@
         <ul class="clients-track" data-clients-ticker-track>
             @foreach ($tickerClients as $client)
                 <li class="flex w-32 shrink-0 flex-col items-center gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-                    <img class="h-12 w-12 object-contain" src="/assets/img/clients/{{ $client->img }}" width="48" height="48" alt="{{ $client->name }}">
+                    <img class="h-12 w-12 object-contain" src="{{ $client->img }}" width="48" height="48" alt="{{ $client->name }}">
                     <span class="text-center text-[0.6rem] font-bold uppercase leading-tight tracking-wide text-slate-500 dark:text-slate-400">{{ $client->name }}</span>
                 </li>
             @endforeach

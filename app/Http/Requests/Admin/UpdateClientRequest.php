@@ -15,7 +15,7 @@ class UpdateClientRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'img' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:5120'],
             'extra' => ['boolean'],
             'order' => ['nullable', 'integer', 'min:0'],
         ];
