@@ -13,7 +13,7 @@
         @if ($client?->img)
             <p class="mt-1 flex items-center gap-2 text-sm text-slate-500">
                 <img src="{{ $client->img }}" alt="{{ $client->name }}" class="h-10 w-10 rounded border border-slate-200 object-contain">
-                Imagen actual. Sube una nueva solo si quieres reemplazarla.
+                Imagen actual: <span class="font-medium text-slate-700">{{ $client->original_name ?? basename($client->img) }}</span>. Sube una nueva solo si quieres reemplazarla.
             </p>
         @endif
         <x-input-error :messages="$errors->get('image')" class="mt-2" />

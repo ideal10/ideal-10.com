@@ -12,6 +12,7 @@ class InterestLink extends Model
         'title',
         'description',
         'url',
+        'original_name',
         'icon',
         'order',
         'active',

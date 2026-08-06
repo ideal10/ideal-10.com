@@ -33,9 +33,13 @@ class InterestLinkController extends Controller
         $data = $request->safe()->only(['title', 'description', 'icon', 'order', 'active']);
         $data['order'] ??= 0;
         $data['active'] = $request->boolean('active', true);
-        $data['url'] = $request->input('link_type') === 'file'
-            ? Storage::url($request->file('file')->store('interest-links', 'public'))
-            : $request->input('url');
+
+        if ($request->input('link_type') === 'file') {
+            $data['url'] = Storage::url($request->file('file')->store('interest-links', 'public'));
+            $data['original_name'] = $request->file('file')->getClientOriginalName();
+        } else {
+            $data['url'] = $request->input('url');
+        }
 
         InterestLink::create($data);
 
@@ -57,11 +61,13 @@ class InterestLinkController extends Controller
             if ($request->hasFile('file')) {
                 $this->deleteStoredFile($interestLink->url);
                 $data['url'] = Storage::url($request->file('file')->store('interest-links', 'public'));
+                $data['original_name'] = $request->file('file')->getClientOriginalName();
             }
-            // No new file uploaded: keep the existing url as-is.
+            // No new file uploaded: keep the existing url/original_name as-is.
         } else {
             $this->deleteStoredFile($interestLink->url);
             $data['url'] = $request->input('url');
+            $data['original_name'] = null;
         }
 
         $interestLink->update($data);
