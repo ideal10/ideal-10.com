@@ -1,6 +1,3 @@
-node_modules
-
-# Laravel
 *.log
 .DS_Store
 .env
@@ -15,16 +12,11 @@ node_modules
 /.vscode
 /.zed
 /auth.json
-/bootstrap/cache/*.php
+/node_modules
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
-/storage/framework/cache/data
-/storage/framework/sessions
-/storage/framework/testing
-/storage/framework/views/*
-/storage/logs/*
 /storage/pail
 /vendor
 Homestead.json
