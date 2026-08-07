@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\InterestLink;
 use App\Models\NavItem;
 use App\Models\Service;
+use App\Models\User;
 
 class AdminNavigation
 {
@@ -35,7 +36,26 @@ class AdminNavigation
                     ['label' => 'Enlaces de interés', 'icon' => 'link', 'index' => 'admin.interest-links.index', 'pattern' => 'admin.interest-links.*', 'model' => InterestLink::class],
                 ],
             ],
+            [
+                'label' => 'Sistema',
+                'adminOnly' => true,
+                'items' => [
+                    ['label' => 'Usuarios', 'icon' => 'shield-check', 'index' => 'admin.users.index', 'pattern' => 'admin.users.*', 'model' => User::class],
+                ],
+            ],
         ];
+    }
+
+    /**
+     * Groups visible to the given user — filters out admin-only groups
+     * (e.g. "Sistema") for non-admin users.
+     */
+    public static function visibleGroups(?User $user): array
+    {
+        return array_values(array_filter(
+            self::groups(),
+            fn (array $group) => empty($group['adminOnly']) || $user?->is_admin
+        ));
     }
 
     /**

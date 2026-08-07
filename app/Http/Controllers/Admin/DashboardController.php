@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\InterestLink;
 use App\Models\NavItem;
 use App\Support\AdminNavigation;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -16,9 +17,11 @@ class DashboardController extends Controller
         NavItem::class => 'label',
     ];
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $items = collect(AdminNavigation::groups())->flatMap(fn (array $group) => $group['items']);
+        $groups = AdminNavigation::visibleGroups($request->user());
+
+        $items = collect($groups)->flatMap(fn (array $group) => $group['items']);
 
         $counts = $items->mapWithKeys(fn (array $item) => [$item['index'] => $item['model']::count()]);
 
@@ -44,7 +47,7 @@ class DashboardController extends Controller
             ->values();
 
         return view('admin.dashboard', [
-            'groups' => AdminNavigation::groups(),
+            'groups' => $groups,
             'standalone' => AdminNavigation::standalone(),
             'counts' => $counts,
             'totalItems' => $counts->sum(),
