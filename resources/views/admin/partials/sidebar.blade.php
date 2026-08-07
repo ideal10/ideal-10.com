@@ -1,6 +1,6 @@
 @php
     $groups = \App\Support\AdminNavigation::visibleGroups(auth()->user());
-    $standalone = \App\Support\AdminNavigation::standalone();
+    $standalone = \App\Support\AdminNavigation::visibleStandalone(auth()->user());
 @endphp
 
 <aside id="admin-sidebar" class="admin-sidebar" aria-label="Menú de administración" tabindex="-1">
