@@ -3,7 +3,10 @@
         <x-admin.page-header title="Clientes" />
     </x-slot>
 
-    <x-admin.create-link :href="route('admin.clients.create')" label="Nuevo cliente" />
+    <div class="mb-4 flex items-center justify-between">
+        <x-admin.view-link :href="route('home').'#clientes'" />
+        <x-admin.create-link :href="route('admin.clients.create')" label="Nuevo cliente" />
+    </div>
 
     <div class="card overflow-hidden p-0">
         <table class="min-w-full divide-y divide-slate-100">
