@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('site-settings', [SiteSettingController::class, 'edit'])->name('site-settings.edit');
-    Route::put('site-settings', [SiteSettingController::class, 'update'])->name('site-settings.update');
+    Route::middleware('admin')->group(function () {
+        Route::get('site-settings', [SiteSettingController::class, 'edit'])->name('site-settings.edit');
+        Route::put('site-settings', [SiteSettingController::class, 'update'])->name('site-settings.update');
+    });
 
     Route::resource('nav-items', NavItemController::class)->except(['show']);
     Route::resource('services', ServiceController::class)->except(['show']);

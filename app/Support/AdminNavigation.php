@@ -64,7 +64,19 @@ class AdminNavigation
     public static function standalone(): array
     {
         return [
-            ['label' => 'Configuración', 'icon' => 'cog', 'index' => 'admin.site-settings.edit', 'pattern' => 'admin.site-settings.*'],
+            ['label' => 'Configuración', 'icon' => 'cog', 'index' => 'admin.site-settings.edit', 'pattern' => 'admin.site-settings.*', 'adminOnly' => true],
         ];
+    }
+
+    /**
+     * Standalone items visible to the given user — filters out admin-only
+     * items (e.g. "Configuración") for non-admin users.
+     */
+    public static function visibleStandalone(?User $user): array
+    {
+        return array_values(array_filter(
+            self::standalone(),
+            fn (array $item) => empty($item['adminOnly']) || $user?->is_admin
+        ));
     }
 }
