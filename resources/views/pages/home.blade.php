@@ -90,7 +90,7 @@
 </section>
 
 {{-- SERVICES -------------------------------------------------------------- --}}
-<section class="section">
+<section id="servicios" class="section">
     <div class="container-page">
         <div class="max-w-2xl">
             <p class="kicker">Servicios</p>
@@ -106,7 +106,7 @@
 </section>
 
 {{-- CLIENTS --------------------------------------------------------------- --}}
-<section class="section-alt">
+<section id="clientes" class="section-alt">
     <div class="container-page">
         <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
             <div>
