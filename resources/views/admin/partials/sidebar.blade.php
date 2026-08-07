@@ -1,5 +1,5 @@
 @php
-    $groups = \App\Support\AdminNavigation::groups();
+    $groups = \App\Support\AdminNavigation::visibleGroups(auth()->user());
     $standalone = \App\Support\AdminNavigation::standalone();
 @endphp
 

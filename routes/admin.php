@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\InterestLinkController;
 use App\Http\Controllers\Admin\NavItemController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
@@ -25,4 +26,6 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::resource('interest-links', InterestLinkController::class)->except(['show']);
     Route::patch('interest-links/{interest_link}/toggle', [InterestLinkController::class, 'toggle'])->name('interest-links.toggle');
     Route::post('interest-links/reorder', [InterestLinkController::class, 'reorder'])->name('interest-links.reorder');
+
+    Route::resource('users', UserController::class)->except(['show'])->middleware('admin');
 });
