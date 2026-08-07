@@ -17,7 +17,7 @@ class UpdateSiteSettingRequest extends FormRequest
             'site_url' => ['required', 'url', 'max:255'],
             'lang' => ['required', 'string', 'max:10'],
             'title' => ['required', 'string', 'max:255'],
-            'mailer' => ['required', 'url', 'max:255'],
+            'web3forms_key' => ['required', 'string', 'max:255'],
         ];
     }
 }

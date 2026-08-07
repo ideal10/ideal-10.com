@@ -10,7 +10,7 @@ class SiteSetting extends Model
         'site_url',
         'lang',
         'title',
-        'mailer',
+        'web3forms_key',
     ];
 
     /**

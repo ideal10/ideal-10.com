@@ -13,7 +13,7 @@ class SiteSettingSeeder extends Seeder
             'site_url' => 'https://ideal-10.com',
             'lang' => 'es-CO',
             'title' => 'Ideal',
-            'mailer' => 'https://formspree.io/f/meoopabj',
+            'web3forms_key' => '',
         ]);
     }
 }

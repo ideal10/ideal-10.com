@@ -31,9 +31,10 @@
                     </div>
 
                     <div>
-                        <x-input-label for="mailer" value="URL de Formspree para el formulario de contacto" />
-                        <x-text-input id="mailer" name="mailer" type="text" class="mt-1 block w-full" :value="old('mailer', $setting->mailer)" required />
-                        <x-input-error :messages="$errors->get('mailer')" class="mt-2" />
+                        <x-input-label for="web3forms_key" value="Access Key de Web3Forms para el formulario de contacto" />
+                        <x-text-input id="web3forms_key" name="web3forms_key" type="text" class="mt-1 block w-full" :value="old('web3forms_key', $setting->web3forms_key)" required />
+                        <p class="mt-1 text-xs text-slate-400">La obtienes en web3forms.com al registrar el sitio; no es una URL, es la clave que identifica a dónde llegan los mensajes.</p>
+                        <x-input-error :messages="$errors->get('web3forms_key')" class="mt-2" />
                     </div>
                 </div>
 
