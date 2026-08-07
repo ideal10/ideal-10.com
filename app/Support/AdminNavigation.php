@@ -20,6 +20,12 @@ class AdminNavigation
     {
         return [
             [
+                'label' => 'Navegación',
+                'items' => [
+                    ['label' => 'Elementos de menú', 'icon' => 'list', 'index' => 'admin.nav-items.index', 'pattern' => 'admin.nav-items.*', 'model' => NavItem::class],
+                ],
+            ],
+            [
                 'label' => 'Contenido',
                 'items' => [
                     ['label' => 'Servicios', 'icon' => 'briefcase', 'index' => 'admin.services.index', 'pattern' => 'admin.services.*', 'model' => Service::class],
@@ -27,12 +33,6 @@ class AdminNavigation
                     ['label' => 'Entidades', 'icon' => 'building', 'index' => 'admin.entities.index', 'pattern' => 'admin.entities.*', 'model' => Entity::class],
                     ['label' => 'Componentes', 'icon' => 'cube', 'index' => 'admin.componentes.index', 'pattern' => 'admin.componentes.*', 'model' => Componente::class],
                     ['label' => 'Enlaces de interés', 'icon' => 'link', 'index' => 'admin.interest-links.index', 'pattern' => 'admin.interest-links.*', 'model' => InterestLink::class],
-                ],
-            ],
-            [
-                'label' => 'Navegación',
-                'items' => [
-                    ['label' => 'Elementos de menú', 'icon' => 'list', 'index' => 'admin.nav-items.index', 'pattern' => 'admin.nav-items.*', 'model' => NavItem::class],
                 ],
             ],
         ];
