@@ -47,7 +47,9 @@
                 </div>
             </div>
 
-            <form action="{{ $site->mailer }}" method="POST" class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <form action="https://api.web3forms.com/submit" method="POST" class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <input type="hidden" name="access_key" value="{{ $site->web3forms_key }}">
+                <input type="hidden" name="subject" value="Nuevo contacto desde ideal-10.com">
                 <div class="grid gap-5 md:grid-cols-2">
                     @foreach ($formFields as $f)
                     <div{!! !empty($f['wide']) ? ' class="md:col-span-2"' : '' !!}>
@@ -60,7 +62,6 @@
                     <label for="message" class="field-label">Mensaje</label>
                     <textarea id="message" name="message" rows="5" placeholder="Describe brevemente el proceso o solicitud..." class="field-input"></textarea>
                 </div>
-                <input type="hidden" name="_language" value="es">
                 <div class="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                     <p class="text-xs text-slate-400 dark:text-slate-500">Responderemos en las próximas 24 horas hábiles.</p>
                     <button type="submit" class="btn-primary px-6 py-3">Enviar solicitud <x-icon.arrow-right /></button>
