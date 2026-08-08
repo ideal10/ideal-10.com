@@ -38,7 +38,6 @@ class AdminNavigation
             ],
             [
                 'label' => 'Sistema',
-                'adminOnly' => true,
                 'items' => [
                     ['label' => 'Usuarios', 'icon' => 'shield-check', 'index' => 'admin.users.index', 'pattern' => 'admin.users.*', 'model' => User::class],
                 ],
@@ -47,36 +46,10 @@ class AdminNavigation
     }
 
     /**
-     * Groups visible to the given user — filters out admin-only groups
-     * (e.g. "Sistema") for non-admin users.
-     */
-    public static function visibleGroups(?User $user): array
-    {
-        return array_values(array_filter(
-            self::groups(),
-            fn (array $group) => empty($group['adminOnly']) || $user?->is_admin
-        ));
-    }
-
-    /**
      * Sidebar items that don't belong to a group (rendered separately).
      */
     public static function standalone(): array
     {
-        return [
-            ['label' => 'Configuración', 'icon' => 'cog', 'index' => 'admin.site-settings.edit', 'pattern' => 'admin.site-settings.*', 'adminOnly' => true],
-        ];
-    }
-
-    /**
-     * Standalone items visible to the given user — filters out admin-only
-     * items (e.g. "Configuración") for non-admin users.
-     */
-    public static function visibleStandalone(?User $user): array
-    {
-        return array_values(array_filter(
-            self::standalone(),
-            fn (array $item) => empty($item['adminOnly']) || $user?->is_admin
-        ));
+        return [];
     }
 }

@@ -35,8 +35,8 @@ RUN install-php-extensions \
         intl \
         opcache
 
-COPY docker/opcache.ini $PHP_INI_DIR/conf.d/opcache.ini
-COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY docker/deploy/opcache.ini $PHP_INI_DIR/conf.d/opcache.ini
+COPY docker/deploy/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /app
