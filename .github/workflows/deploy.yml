@@ -1,9 +1,8 @@
-name: Build and Publish Docker Image
+name: Build and Deploy Docker Image
 
 on:
   push:
-    branches:
-      - feature/laravel-migration
+    branches: main
   workflow_dispatch: {}
 
 env:
@@ -44,6 +43,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: docker/deploy/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

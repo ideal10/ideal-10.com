@@ -11,7 +11,6 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Nombre</th>
                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Email</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Rol</th>
                     <th class="px-6 py-3"></th>
                 </tr>
             </thead>
@@ -20,7 +19,6 @@
                     <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.users.edit', $user) }}">
                         <td class="px-6 py-4 text-sm text-slate-900">{{ $user->name }}</td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $user->email }}</td>
-                        <td class="px-6 py-4 text-sm text-slate-500">{{ $user->is_admin ? 'Administrador' : 'Usuario' }}</td>
                         <td class="px-6 py-4 text-right text-sm">
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn-icon-edit" title="Editar">
                                 <x-admin.icon name="pencil" class="h-4 w-4" />

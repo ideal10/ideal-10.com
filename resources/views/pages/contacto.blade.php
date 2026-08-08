@@ -48,7 +48,7 @@
             </div>
 
             <form action="https://api.web3forms.com/submit" method="POST" class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                <input type="hidden" name="access_key" value="{{ $site->web3forms_key }}">
+                <input type="hidden" name="access_key" value="{{ config('services.web3forms.key') }}">
                 <input type="hidden" name="subject" value="Nuevo contacto desde ideal-10.com">
                 <div class="grid gap-5 md:grid-cols-2">
                     @foreach ($formFields as $f)

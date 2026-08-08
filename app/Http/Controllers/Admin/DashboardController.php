@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\InterestLink;
 use App\Models\NavItem;
 use App\Support\AdminNavigation;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -17,9 +16,9 @@ class DashboardController extends Controller
         NavItem::class => 'label',
     ];
 
-    public function index(Request $request): View
+    public function index(): View
     {
-        $groups = AdminNavigation::visibleGroups($request->user());
+        $groups = AdminNavigation::groups();
 
         $items = collect($groups)->flatMap(fn (array $group) => $group['items']);
 

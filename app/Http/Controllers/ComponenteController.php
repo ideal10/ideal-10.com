@@ -17,7 +17,10 @@ class ComponenteController extends Controller
             'current' => $componente,
             'currentIndex' => $currentIndex,
             'components' => $components,
-            'renderedContent' => Str::markdown((string) $componente->content, ['html_input' => 'allow']),
+            'renderedContent' => Str::markdown((string) $componente->content, [
+                'html_input' => 'strip',
+                'allow_unsafe_links' => false,
+            ]),
         ]);
     }
 }

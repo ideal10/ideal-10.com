@@ -14,14 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            SiteSettingSeeder::class,
-            NavItemSeeder::class,
-            ServiceSeeder::class,
-            ClientSeeder::class,
-            EntitySeeder::class,
-            ComponenteSeeder::class,
-            InterestLinkSeeder::class,
-        ]);
+        //
     }
 }

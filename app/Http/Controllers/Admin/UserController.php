@@ -27,7 +27,6 @@ class UserController extends Controller
     public function store(StoreUserRequest $request): RedirectResponse
     {
         $data = $request->safe()->only(['name', 'email', 'password']);
-        $data['is_admin'] = $request->boolean('is_admin');
 
         User::create($data);
 
@@ -41,12 +40,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        if ($user->is($request->user()) && $user->is_admin && ! $request->boolean('is_admin')) {
-            return back()->withErrors(['is_admin' => 'No puedes quitarte tu propio permiso de administrador.']);
-        }
-
         $data = $request->safe()->only(['name', 'email']);
-        $data['is_admin'] = $request->boolean('is_admin');
 
         if (filled($request->validated('password'))) {
             $data['password'] = $request->validated('password');

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Componente;
 use App\Models\Service;
-use App\Models\SiteSetting;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -28,9 +27,7 @@ class PageController extends Controller
 
     public function contacto(): View
     {
-        return view('pages.contacto', [
-            'site' => SiteSetting::current(),
-        ]);
+        return view('pages.contacto');
     }
 
     public function ideal10(): View
