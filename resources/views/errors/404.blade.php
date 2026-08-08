@@ -1,0 +1,15 @@
+@extends('layouts.app')
+
+@section('title', 'Página no encontrada')
+
+@section('content')
+<section class="flex min-h-[60vh] items-center justify-center bg-white px-4 py-20 pt-28 dark:bg-slate-950">
+    <div class="text-center">
+        <p class="kicker">Error 404</p>
+        <h1 class="mt-4 text-8xl font-extrabold text-slate-900 dark:text-white">404</h1>
+        <p class="mt-4 text-2xl font-semibold text-slate-700 dark:text-slate-200">Página no encontrada.</p>
+        <p class="mt-3 text-base text-slate-500 dark:text-slate-400">Lo sentimos, no pudimos encontrar lo que buscabas.</p>
+        <a href="/" class="btn-primary mt-8">Volver al inicio <x-icon.arrow-right /></a>
+    </div>
+</section>
+@endsection
