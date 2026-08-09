@@ -21,7 +21,7 @@ RUN composer install \
 COPY . .
 RUN composer dump-autoload --optimize --no-dev --classmap-authoritative
 
-# --- Runtime: FrankenPHP + Laravel Octane -------------------------------------
+# --- Runtime: FrankenPHP -------------------------------------------------------
 FROM dunglas/frankenphp:1-php8.4 AS runtime
 
 RUN install-php-extensions \
@@ -36,6 +36,7 @@ RUN install-php-extensions \
         opcache
 
 COPY docker/deploy/opcache.ini $PHP_INI_DIR/conf.d/opcache.ini
+COPY docker/deploy/Caddyfile /etc/frankenphp/Caddyfile
 COPY docker/deploy/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
@@ -46,9 +47,7 @@ COPY --from=frontend /app/public/build /app/public/build
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-ENV OCTANE_SERVER=frankenphp
-
-EXPOSE 8000
+EXPOSE 80
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000", "--workers=auto", "--max-requests=500"]
+CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]
