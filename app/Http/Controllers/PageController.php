@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Componente;
 use App\Models\Service;
+use App\Models\SupportPhone;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -27,7 +28,9 @@ class PageController extends Controller
 
     public function contacto(): View
     {
-        return view('pages.contacto');
+        return view('pages.contacto', [
+            'phones' => SupportPhone::active()->ordered()->get(),
+        ]);
     }
 
     public function ideal10(): View

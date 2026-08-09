@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\InterestLink;
 use App\Models\NavItem;
+use App\Models\SupportPhone;
 use App\Support\AdminNavigation;
 use Illuminate\View\View;
 
@@ -14,6 +15,7 @@ class DashboardController extends Controller
     private const TITLE_FIELDS = [
         InterestLink::class => 'title',
         NavItem::class => 'label',
+        SupportPhone::class => 'number',
     ];
 
     public function index(): View

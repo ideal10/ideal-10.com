@@ -1,3 +1,5 @@
+@php($supportPhones = \App\Models\SupportPhone::active()->ordered()->get())
+
 <footer>
     {{-- Pre-footer CTA band. --}}
     {{-- Main footer. --}}
@@ -27,8 +29,9 @@
                         Soporte
                     </h2>
                     <ul class="space-y-3 text-sm text-emerald-200">
-                        <li><a href="https://wa.me/+573202497418" class="transition hover:text-white">320 249 7418</a></li>
-                        <li><a href="https://wa.me/+573125863064" class="transition hover:text-white">312 586 3064</a></li>
+                        @foreach ($supportPhones as $phone)
+                        <li><a href="{{ $phone->href() }}" class="transition hover:text-white">{{ $phone->number }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

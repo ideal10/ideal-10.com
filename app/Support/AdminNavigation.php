@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\InterestLink;
 use App\Models\NavItem;
 use App\Models\Service;
+use App\Models\SupportPhone;
 use App\Models\User;
 
 class AdminNavigation
@@ -34,6 +35,7 @@ class AdminNavigation
                     ['label' => 'Entidades', 'icon' => 'building', 'index' => 'admin.entities.index', 'pattern' => 'admin.entities.*', 'model' => Entity::class],
                     ['label' => 'Componentes', 'icon' => 'cube', 'index' => 'admin.componentes.index', 'pattern' => 'admin.componentes.*', 'model' => Componente::class],
                     ['label' => 'Enlaces de interés', 'icon' => 'link', 'index' => 'admin.interest-links.index', 'pattern' => 'admin.interest-links.*', 'model' => InterestLink::class],
+                    ['label' => 'Teléfonos de soporte', 'icon' => 'phone', 'index' => 'admin.support-phones.index', 'pattern' => 'admin.support-phones.*', 'model' => SupportPhone::class],
                 ],
             ],
             [

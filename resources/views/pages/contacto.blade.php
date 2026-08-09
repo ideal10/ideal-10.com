@@ -3,11 +3,6 @@
 @section('title', 'Contacto')
 
 @php
-    $channels = [
-        ['type' => 'whatsapp', 'href' => 'https://wa.me/+573202497418', 'label' => 'WhatsApp', 'value' => '320 249 7418'],
-        ['type' => 'whatsapp', 'href' => 'https://wa.me/+573125863064', 'label' => 'WhatsApp', 'value' => '312 586 3064'],
-    ];
-
     $formFields = [
         ['id' => 'first_name', 'name' => 'nombre', 'label' => 'Nombre', 'type' => 'text', 'placeholder' => 'Tu nombre'],
         ['id' => 'last_name', 'name' => 'apellido', 'label' => 'Apellido', 'type' => 'text', 'placeholder' => 'Tu apellido'],
@@ -28,12 +23,18 @@
 
         <div class="grid gap-10 lg:grid-cols-[.65fr_1.35fr]">
             <div class="space-y-4" data-reveal-stagger>
-                @foreach ($channels as $ch)
-                <a href="{{ $ch['href'] }}" class="group flex items-center gap-4 rounded-2xl border border-emerald-100 bg-emerald-50 p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-100 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800">
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white transition duration-300 ease-out group-hover:scale-110 group-hover:rotate-6"><x-icon.whatsapp /></div>
+                @foreach ($phones as $phone)
+                <a href="{{ $phone->href() }}" class="group flex items-center gap-4 rounded-2xl border border-emerald-100 bg-emerald-50 p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-100 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white transition duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
+                        @if ($phone->isWhatsapp())
+                            <x-icon.whatsapp />
+                        @else
+                            <x-icon.phone />
+                        @endif
+                    </div>
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{{ $ch['label'] }}</p>
-                        <p class="mt-0.5 font-semibold text-slate-900 dark:text-white">{{ $ch['value'] }}</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{{ $phone->label() }}</p>
+                        <p class="mt-0.5 font-semibold text-slate-900 dark:text-white">{{ $phone->number }}</p>
                     </div>
                 </a>
                 @endforeach
