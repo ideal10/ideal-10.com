@@ -148,6 +148,15 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
+
+        Schema::create('support_phones', function (Blueprint $table) {
+            $table->id();
+            $table->string('number');
+            $table->enum('type', ['whatsapp', 'dial']);
+            $table->unsignedInteger('order')->default(0);
+            $table->boolean('active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -155,6 +164,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('support_phones');
         Schema::dropIfExists('interest_links');
         Schema::dropIfExists('componentes');
         Schema::dropIfExists('entity_links');
