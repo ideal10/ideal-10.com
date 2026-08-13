@@ -23,7 +23,8 @@ services:
         networks:
             - sail
         depends_on:
-            - mariadb
+            mariadb:
+                condition: service_healthy
     mariadb:
         image: 'mariadb:11'
         ports:
