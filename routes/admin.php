@@ -23,6 +23,7 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::resource('interest-links', InterestLinkController::class)->except(['show']);
     Route::patch('interest-links/{interest_link}/toggle', [InterestLinkController::class, 'toggle'])->name('interest-links.toggle');
     Route::post('interest-links/reorder', [InterestLinkController::class, 'reorder'])->name('interest-links.reorder');
+    Route::post('interest-links/sort-by-title', [InterestLinkController::class, 'sortByTitle'])->name('interest-links.sort-by-title');
 
     Route::resource('support-phones', SupportPhoneController::class)->except(['show']);
     Route::patch('support-phones/{support_phone}/toggle', [SupportPhoneController::class, 'toggle'])->name('support-phones.toggle');

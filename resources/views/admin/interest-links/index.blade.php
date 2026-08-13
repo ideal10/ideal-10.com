@@ -23,7 +23,21 @@
             <thead class="bg-emerald-50/60">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Orden</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Título</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                        <div class="flex items-center gap-1">
+                            Título
+                            <form action="{{ route('admin.interest-links.sort-by-title') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="direction" value="asc">
+                                <button type="submit" class="btn-icon" title="Ordenar A-Z">▲</button>
+                            </form>
+                            <form action="{{ route('admin.interest-links.sort-by-title') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="direction" value="desc">
+                                <button type="submit" class="btn-icon" title="Ordenar Z-A">▼</button>
+                            </form>
+                        </div>
+                    </th>
                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Tipo</th>
                     <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-emerald-700">Activo</th>
                     <th class="px-6 py-3"></th>

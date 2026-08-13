@@ -99,6 +99,20 @@ class InterestLinkController extends Controller
         return redirect()->route('admin.interest-links.index');
     }
 
+    public function sortByTitle(Request $request): RedirectResponse
+    {
+        $direction = $request->input('direction') === 'desc' ? 'desc' : 'asc';
+
+        InterestLink::query()
+            ->orderByRaw("LOWER(title) {$direction}")
+            ->orderBy('id')
+            ->get()
+            ->values()
+            ->each(fn (InterestLink $link, int $index) => $link->update(['order' => $index + 1]));
+
+        return redirect()->route('admin.interest-links.index')->with('status', 'Enlaces ordenados alfabéticamente.');
+    }
+
     private function deleteStoredFile(string $url): void
     {
         if (Str::startsWith($url, '/storage/')) {
