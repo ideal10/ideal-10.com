@@ -7,7 +7,7 @@
         <x-admin.back-link :href="route('admin.interest-links.index')" />
 
         <div class="card">
-            <form action="{{ route('admin.interest-links.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.interest-links.store') }}" method="POST" enctype="multipart/form-data" data-upload-progress>
                 @csrf
                 @include('admin.interest-links._form')
 

@@ -38,6 +38,12 @@
     <div data-link-type-panel="file">
         <x-input-label for="file" value="Archivo (xlsx, xls, csv, pdf, doc, docx — máx 200MB)" />
         <input id="file" name="file" type="file" class="field-file mt-1">
+        <div data-upload-progress-wrapper class="mt-2 hidden">
+            <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                <div data-upload-progress-fill class="h-2 w-0 rounded-full bg-emerald-600 transition-all"></div>
+            </div>
+            <p class="mt-1 text-sm text-slate-500"><span data-upload-progress-label>0%</span> subido</p>
+        </div>
         @if ($isFile)
             <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ $link->url }}" class="text-emerald-700 hover:underline">{{ $link->original_name ?? basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
         @endif
