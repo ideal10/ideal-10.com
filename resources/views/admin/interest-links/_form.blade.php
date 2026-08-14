@@ -45,7 +45,7 @@
             <p class="mt-1 text-sm text-slate-500"><span data-upload-progress-label>0%</span> subido</p>
         </div>
         @if ($isFile)
-            <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ $link->url }}" class="text-emerald-700 hover:underline">{{ $link->original_name ?? basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
+            <p class="mt-1 text-sm text-slate-500">Archivo actual: <a href="{{ route('enlaces.download', $link) }}" class="text-emerald-700 hover:underline">{{ $link->original_name ?? basename($link->url) }}</a>. Sube uno nuevo solo si quieres reemplazarlo.</p>
         @endif
         <x-input-error :messages="$errors->get('file')" class="mt-2" />
     </div>

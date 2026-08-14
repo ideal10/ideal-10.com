@@ -88,7 +88,7 @@
 
         <div class="split-grid" id="gridArchivos">
             @foreach ($archivos as $enlace)
-                <a href="{{ $enlace->url }}"
+                <a href="{{ route('enlaces.download', $enlace) }}"
                    class="split-card is-file"
                    data-title="{{ mb_strtolower($enlace->title) }}">
                     <div class="split-card-icon">

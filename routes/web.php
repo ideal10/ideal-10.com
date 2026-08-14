@@ -12,6 +12,7 @@ Route::get('/nosotros', [PageController::class, 'nosotros'])->name('nosotros');
 Route::get('/contacto', [PageController::class, 'contacto'])->name('contacto');
 Route::get('/ideal-10', [PageController::class, 'ideal10'])->name('ideal10');
 Route::get('/enlaces_de_interes', [InterestLinkController::class, 'index'])->name('enlaces.index');
+Route::get('/enlaces_de_interes/{interestLink}/descargar', [InterestLinkController::class, 'download'])->name('enlaces.download');
 Route::get('/componentes/{componente}', [ComponenteController::class, 'show'])->name('componentes.show');
 Route::get('/menu_entidades/{entity}', [MenuEntidadController::class, 'show'])->name('menu-entidades.show');
 
