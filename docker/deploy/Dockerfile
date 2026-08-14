@@ -35,7 +35,7 @@ RUN install-php-extensions \
         intl \
         opcache
 
-COPY docker/deploy/opcache.ini $PHP_INI_DIR/conf.d/opcache.ini
+COPY docker/deploy/php.ini $PHP_INI_DIR/conf.d/99-deploy.ini
 COPY docker/deploy/Caddyfile /etc/frankenphp/Caddyfile
 COPY docker/deploy/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
