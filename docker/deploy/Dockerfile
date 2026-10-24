@@ -22,7 +22,7 @@ COPY . .
 RUN composer dump-autoload --optimize --no-dev --classmap-authoritative
 
 # --- Runtime: FrankenPHP -------------------------------------------------------
-FROM dunglas/frankenphp:1-php8.4 AS runtime
+FROM dunglas/frankenphp:1-php8.5 AS runtime
 
 RUN install-php-extensions \
         pdo_mysql \
