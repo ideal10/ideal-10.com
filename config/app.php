@@ -68,6 +68,13 @@ return [
     'timezone' => 'UTC',
 
     /*
+    | Timezone used only to *display* stored timestamps to people (e.g. the
+    | audit log). Data is still stored in the timezone above.
+    */
+
+    'display_timezone' => env('APP_DISPLAY_TIMEZONE', 'America/Bogota'),
+
+    /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Models\AuditLog;
 use App\Models\Client;
 use App\Models\Componente;
 use App\Models\Entity;
@@ -51,6 +52,7 @@ class AdminNavigation
                 'label' => 'Sistema',
                 'items' => [
                     ['label' => 'Usuarios', 'icon' => 'shield-check', 'index' => 'admin.users.index', 'pattern' => 'admin.users.*', 'model' => User::class],
+                    ['label' => 'Auditoría', 'icon' => 'clipboard', 'index' => 'admin.audit-logs.index', 'pattern' => 'admin.audit-logs.*', 'model' => AuditLog::class, 'recent' => false],
                 ],
             ],
         ];

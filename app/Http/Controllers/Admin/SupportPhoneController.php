@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreSupportPhoneRequest;
 use App\Http\Requests\Admin\UpdateSupportPhoneRequest;
 use App\Models\SupportPhone;
+use App\Support\Audit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -72,6 +73,8 @@ class SupportPhoneController extends Controller
         foreach ($request->input('ids', []) as $order => $id) {
             SupportPhone::whereKey($id)->update(['order' => $order + 1]);
         }
+
+        Audit::record('reordered', SupportPhone::class, label: 'Orden manual');
 
         return redirect()->route('admin.support-phones.index');
     }

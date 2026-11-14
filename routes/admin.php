@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ComponenteController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('auditoria', [AuditLogController::class, 'index'])->name('audit-logs.index');
 
     Route::resource('nav-items', NavItemController::class)->except(['show']);
     Route::resource('services', ServiceController::class)->except(['show']);

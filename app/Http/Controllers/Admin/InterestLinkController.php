@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreInterestLinkRequest;
 use App\Http\Requests\Admin\UpdateInterestLinkRequest;
 use App\Models\InterestLink;
+use App\Support\Audit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -96,6 +97,8 @@ class InterestLinkController extends Controller
             InterestLink::whereKey($id)->update(['order' => $order + 1]);
         }
 
+        Audit::record('reordered', InterestLink::class, label: 'Orden manual');
+
         return redirect()->route('admin.interest-links.index');
     }
 
@@ -103,12 +106,14 @@ class InterestLinkController extends Controller
     {
         $direction = $request->input('direction') === 'desc' ? 'desc' : 'asc';
 
-        InterestLink::query()
+        Audit::quietly(fn () => InterestLink::query()
             ->orderByRaw("LOWER(title) {$direction}")
             ->orderBy('id')
             ->get()
             ->values()
-            ->each(fn (InterestLink $link, int $index) => $link->update(['order' => $index + 1]));
+            ->each(fn (InterestLink $link, int $index) => $link->update(['order' => $index + 1])));
+
+        Audit::record('reordered', InterestLink::class, label: $direction === 'desc' ? 'Alfabético (Z–A)' : 'Alfabético (A–Z)');
 
         return redirect()->route('admin.interest-links.index')->with('status', 'Enlaces ordenados alfabéticamente.');
     }

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use App\Models\Concerns\HasLogo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class EntityLink extends Model
 {
-    use HasLogo;
+    use Auditable, HasLogo;
 
     protected $fillable = [
         'entity_id',
@@ -26,6 +27,13 @@ class EntityLink extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    public function auditLabel(): string
+    {
+        $entity = $this->entity()->value('name');
+
+        return $entity ? "{$this->name} ({$entity})" : $this->name;
     }
 
     /**

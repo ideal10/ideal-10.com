@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class SupportPhone extends Model
 {
+    use Auditable;
+
     protected $fillable = [
         'number',
         'type',
