@@ -8,6 +8,13 @@
     </div>
 
     <div>
+        <x-input-label for="username" value="Usuario" />
+        <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user?->username)" autocapitalize="off" spellcheck="false" />
+        <p class="mt-1 text-xs text-slate-500">Opcional. Para entrar con él en vez del correo. Letras, números, punto, guion o guion bajo.</p>
+        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+    </div>
+
+    <div>
         <x-input-label for="email" value="Email" />
         <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user?->email)" required autocomplete="username" />
         <x-input-error :messages="$errors->get('email')" class="mt-2" />

@@ -17,7 +17,12 @@
             <tbody class="divide-y divide-slate-100">
                 @foreach ($users as $user)
                     <tr class="cursor-pointer hover:bg-emerald-50/40" data-edit-href="{{ route('admin.users.edit', $user) }}">
-                        <td class="px-6 py-4 text-sm text-slate-900">{{ $user->name }}</td>
+                        <td class="px-6 py-4 text-sm text-slate-900">
+                            {{ $user->name }}
+                            @if ($user->username)
+                                <span class="ml-1 text-slate-400">{{ '@'.$user->username }}</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-4 text-sm text-slate-500">{{ $user->email }}</td>
                         <td class="px-6 py-4 text-right text-sm">
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn-icon-edit" title="Editar">

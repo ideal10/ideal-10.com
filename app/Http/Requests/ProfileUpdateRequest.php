@@ -18,6 +18,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'username' => User::usernameRules($this->user()->id),
             'email' => [
                 'required',
                 'string',

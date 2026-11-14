@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $data = $request->safe()->only(['name', 'email', 'password']);
+        $data = $request->safe()->only(['name', 'username', 'email', 'password']);
 
         User::create($data);
 
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $data = $request->safe()->only(['name', 'email']);
+        $data = $request->safe()->only(['name', 'username', 'email']);
 
         if (filled($request->validated('password'))) {
             $data['password'] = $request->validated('password');

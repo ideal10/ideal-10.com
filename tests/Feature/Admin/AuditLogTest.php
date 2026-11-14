@@ -56,8 +56,8 @@ class AuditLogTest extends TestCase
     {
         $user = User::factory()->create(['email' => 'ana@ideal10.com', 'password' => 'clave-correcta']);
 
-        $this->post(route('login'), ['email' => 'ana@ideal10.com', 'password' => 'mala']);
-        $this->post(route('login'), ['email' => 'ana@ideal10.com', 'password' => 'clave-correcta']);
+        $this->post(route('login'), ['login' => 'ana@ideal10.com', 'password' => 'mala']);
+        $this->post(route('login'), ['login' => 'ana@ideal10.com', 'password' => 'clave-correcta']);
         $this->post(route('logout'));
 
         $this->assertSame(['login_failed', 'login', 'logout'], AuditLog::where('event', '!=', 'created')->orderBy('id')->pluck('event')->all());

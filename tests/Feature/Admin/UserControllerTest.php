@@ -62,4 +62,20 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseMissing('users', ['id' => $other->id]);
     }
+
+    public function test_admin_can_set_a_username_for_a_user(): void
+    {
+        $admin = User::factory()->create();
+        $user = User::factory()->create();
+
+        $this->actingAs($admin)->put(route('admin.users.update', $user), [
+            'name' => $user->name,
+            'username' => 'Contadora',
+            'email' => $user->email,
+        ])->assertSessionHasNoErrors();
+
+        $this->assertSame('contadora', $user->refresh()->username);
+
+        $this->actingAs($admin)->get(route('admin.users.index'))->assertSee('@contadora');
+    }
 }

@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Sign-ins, sign-outs and failed attempts go to the audit log next to
-     * content changes. A failed attempt keeps the email that was typed so
-     * repeated guesses against one account are visible.
+     * content changes. A failed attempt keeps the username or email that
+     * was typed so repeated guesses against one account are visible.
      */
     private function registerAuthAuditing(): void
     {
@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
             Audit::record(
                 'login_failed',
                 $event->user instanceof User ? $event->user : User::class,
-                label: (string) ($event->credentials['email'] ?? ''),
+                label: (string) ($event->credentials['email'] ?? $event->credentials['username'] ?? ''),
             );
         });
     }

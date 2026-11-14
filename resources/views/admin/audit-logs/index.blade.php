@@ -144,7 +144,7 @@
                                             <span class="font-semibold text-slate-900">{{ $log->user_name ?? 'Sin identificar' }}</span>
                                             <span class="mx-1 inline-flex items-center rounded-full px-2 py-0.5 align-middle text-xs font-semibold ring-1 {{ $eventStyles[$log->event] ?? 'bg-slate-100 text-slate-700 ring-slate-200' }}">{{ $log->eventLabel() }}</span>
                                             @if ($log->event === 'login_failed')
-                                                con el correo <span class="font-semibold text-slate-900">{{ $log->auditable_label ?: '(vacío)' }}</span>
+                                                como <span class="font-semibold text-slate-900">{{ $log->auditable_label ?: '(vacío)' }}</span>
                                             @elseif (! in_array($log->event, ['login', 'logout'], true))
                                                 @if ($log->moduleLabel())
                                                     <span class="text-slate-500">{{ $log->moduleLabel() }}</span>

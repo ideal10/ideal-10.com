@@ -5,9 +5,11 @@ namespace App\Models;
 use App\Models\Concerns\Auditable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Validation\Rule;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -34,6 +37,29 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Validation rules for the optional username. No "@" allowed, so the
+     * login form can tell a username from an email.
+     */
+    public static function usernameRules(?int $ignoreId = null): array
+    {
+        return [
+            'nullable', 'string', 'min:3', 'max:50', 'regex:/^[a-z0-9._-]+$/i',
+            Rule::unique('users', 'username')->ignore($ignoreId),
+        ];
+    }
+
+    /**
+     * Stored lowercase and trimmed (empty means "no username") so sign-in
+     * is case-insensitive.
+     */
+    protected function username(): Attribute
+    {
+        return Attribute::set(
+            fn (?string $value) => filled($value) ? mb_strtolower(trim($value)) : null,
+        );
+    }
 
     /**
      * Get the attributes that should be cast.
