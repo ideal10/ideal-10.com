@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ComponenteController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EntityController;
+use App\Http\Controllers\Admin\EntityDirectoryController;
 use App\Http\Controllers\Admin\InterestLinkController;
 use App\Http\Controllers\Admin\NavItemController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -17,6 +18,7 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::resource('nav-items', NavItemController::class)->except(['show']);
     Route::resource('services', ServiceController::class)->except(['show']);
     Route::resource('clients', ClientController::class)->except(['show']);
+    Route::get('directorio-entidades', [EntityDirectoryController::class, 'index'])->name('entity-directory.index');
     Route::resource('entities', EntityController::class)->except(['show']);
     Route::resource('componentes', ComponenteController::class)->except(['show']);
 

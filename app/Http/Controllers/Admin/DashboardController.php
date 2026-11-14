@@ -27,6 +27,7 @@ class DashboardController extends Controller
         $counts = $items->mapWithKeys(fn (array $item) => [$item['index'] => $item['model']::count()]);
 
         $recent = $items
+            ->filter(fn (array $item) => $item['recent'] ?? true)
             ->flatMap(function (array $item) {
                 $titleField = self::TITLE_FIELDS[$item['model']] ?? 'name';
 

@@ -17,6 +17,9 @@ class AdminNavigation
      * Grouped sidebar sections. Single source of truth for both the
      * sidebar (App\Support\AdminNavigation::groups()) and the dashboard
      * quick-links + counts.
+     *
+     * Items with 'recent' => false are left out of the dashboard's recent
+     * activity (e.g. read-only pages that share a model with another item).
      */
     public static function groups(): array
     {
@@ -28,11 +31,17 @@ class AdminNavigation
                 ],
             ],
             [
+                'label' => 'Menú de entidades',
+                'items' => [
+                    ['label' => 'Directorio de entidades', 'icon' => 'squares', 'index' => 'admin.entity-directory.index', 'pattern' => 'admin.entity-directory.*', 'model' => Entity::class, 'recent' => false],
+                    ['label' => 'Administrar entidades', 'icon' => 'building', 'index' => 'admin.entities.index', 'pattern' => 'admin.entities.*', 'model' => Entity::class],
+                ],
+            ],
+            [
                 'label' => 'Contenido',
                 'items' => [
                     ['label' => 'Servicios', 'icon' => 'briefcase', 'index' => 'admin.services.index', 'pattern' => 'admin.services.*', 'model' => Service::class],
                     ['label' => 'Clientes', 'icon' => 'users', 'index' => 'admin.clients.index', 'pattern' => 'admin.clients.*', 'model' => Client::class],
-                    ['label' => 'Entidades', 'icon' => 'building', 'index' => 'admin.entities.index', 'pattern' => 'admin.entities.*', 'model' => Entity::class],
                     ['label' => 'Componentes', 'icon' => 'cube', 'index' => 'admin.componentes.index', 'pattern' => 'admin.componentes.*', 'model' => Componente::class],
                     ['label' => 'Enlaces de interés', 'icon' => 'link', 'index' => 'admin.interest-links.index', 'pattern' => 'admin.interest-links.*', 'model' => InterestLink::class],
                     ['label' => 'Teléfonos de soporte', 'icon' => 'phone', 'index' => 'admin.support-phones.index', 'pattern' => 'admin.support-phones.*', 'model' => SupportPhone::class],

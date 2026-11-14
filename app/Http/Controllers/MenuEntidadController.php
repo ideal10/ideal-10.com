@@ -9,8 +9,10 @@ class MenuEntidadController extends Controller
 {
     public function show(Entity $entity): View
     {
-        return view('layouts.standalone', [
-            'name' => $entity->name,
+        $entity->load(['client', 'links.client']);
+
+        return view('pages.menu-entidad', [
+            'entity' => $entity,
             'links' => $entity->links,
         ]);
     }
